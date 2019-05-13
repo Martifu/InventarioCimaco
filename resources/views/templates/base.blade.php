@@ -10,7 +10,13 @@
     <title>Document</title>
 </head>
 <body>
+    @yield('cssextra')
 
+    @yield('content', 'Default Content')
+
+
+    <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+
+    @yield('javascript')
 </body>
-<script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
 </html>
