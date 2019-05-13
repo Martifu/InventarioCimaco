@@ -76,5 +76,12 @@
 @stop
 
 @section('javascript')
-
+    <script>
+      $(document).ready(function () {
+          $('.btn-inicio').click(function () {
+              var usuario = $('#usuario').val();
+              var contra = $('#contrasena').val();
+          });
+      });
+    </script>
 @stop
