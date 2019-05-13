@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
-    <title>Document</title>
+    <title>Inicio</title>
 </head>
 <body>
     @yield('cssextra')
