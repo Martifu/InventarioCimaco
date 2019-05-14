@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/dashboard', function () {
@@ -20,3 +20,7 @@ Route::get('/dashboard', function () {
 });
 
 Route::get('equipos','EquiposController@equipos');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
