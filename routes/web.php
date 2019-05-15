@@ -26,3 +26,5 @@ Auth::routes();
 Route::get('/principal', 'HomeController@index')->name('principal');
 
 Route::get('/agregar', 'HomeController@agregar');
+
+Route::get('/buscar','EquiposController@buscar_view');
