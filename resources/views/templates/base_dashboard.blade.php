@@ -545,49 +545,46 @@
             <div class="sidebar-menu">
                 <ul>
                     <li class="header-menu">
-                        <span>General</span>
+                        <span>Activo fijo</span>
                     </li>
-                    <li class="sidebar-dropdown">
-                        <a href="#">
-                            <i class="fa fa-tachometer-alt"></i>
-                            <span>Activo fijo</span>
+                    {{--<li class="sidebar-dropdown">--}}
+                        {{--<a href="#">--}}
+                            {{--<i class="fa fa-tachometer-alt"></i>--}}
+                            {{--<span>Activo fijo</span>--}}
+                        {{--</a>--}}
+                        {{--<div class="sidebar-submenu">--}}
+                            {{--<ul>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#">Dashboard 1--}}
+                                        {{--<span class="badge badge-pill badge-success">Pro</span>--}}
+                                    {{--</a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#">Dashboard 2</a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#">Dashboard 3</a>--}}
+                                {{--</li>--}}
+                            {{--</ul>--}}
+                        {{--</div>--}}
+                    {{--</li>--}}
+                    <li>
+                        <a href="/buscar">
+                            <i class="fa fa-book"></i>
+                            <span>Buscar</span>
                         </a>
-                        <div class="sidebar-submenu">
-                            <ul>
-                                <li>
-                                    <a href="#">Dashboard 1
-                                        <span class="badge badge-pill badge-success">Pro</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">Dashboard 2</a>
-                                </li>
-                                <li>
-                                    <a href="#">Dashboard 3</a>
-                                </li>
-                            </ul>
-                        </div>
                     </li>
-                    <li class="sidebar-dropdown">
-                        <a href="#">
-                            <i class="fa fa-file-alt"></i>
-                            <span>E-commerce</span>
+                    <li>
+                        <a href="/agregar">
+                            <i class="fa fa-book"></i>
+                            <span>Agregar</span>
                         </a>
-                        <div class="sidebar-submenu">
-                            <ul>
-                                <li>
-                                    <a href="#">Products
-
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">Orders</a>
-                                </li>
-                                <li>
-                                    <a href="#">Credit cart</a>
-                                </li>
-                            </ul>
-                        </div>
+                    </li>
+                    <li>
+                        <a href="/modificar">
+                            <i class="fa fa-book"></i>
+                            <span>Modificar</span>
+                        </a>
                     </li>
 
                     <li class="header-menu">

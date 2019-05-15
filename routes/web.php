@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/dashboard', function () {
+Route::get('/principal', function () {
     return view('templates.base_dashboard');
 });
 
@@ -23,4 +23,6 @@ Route::get('equipos','EquiposController@equipos');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/principal', 'HomeController@index')->name('principal');
+
+Route::get('/agregar', 'HomeController@agregar');
