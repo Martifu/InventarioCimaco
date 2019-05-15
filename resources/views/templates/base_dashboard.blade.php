@@ -519,8 +519,7 @@
                     <img src="{{asset('img/perfil2.png')}}" style="width: 100%; height: 7%" alt="">
                 </div>
                 <div class="user-info">
-          <span style="color: white" class="user-name">Jhon
-            <strong>Smith</strong>
+          <span style="color: white" class="user-name">{{ Auth::user()->name }}
           </span>
                     <span class="user-role">Administrator</span>
                     <span class="user-status">
@@ -621,10 +620,20 @@
             <a href="#">
                 <i class="fa fa-cog"></i>
             </a>
-            <a href="#">
+            <a href="{{ route('logout') }}"  
+            onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();">
+           
                 <span class="badge-sonar"></span>
-                <i class="fa fa-power-off"></i>
+               <i class="fa fa-power-off" ></i>
+               
             </a>
+            
+             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+             @csrf
+            </form>
+
+
         </div>
     </nav>
     <!-- sidebar-wrapper  -->
