@@ -1,6 +1,6 @@
 <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" id="bootstrap-css">
 <link rel="stylesheet" href="{{asset('css/dataTables.bootstrap.min.css')}}">
-{{--<link rel="stylesheet" href="{{asset('css/bootstrap.min3.css')}}">--}}
+<script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 
 
@@ -14,7 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
-    <title>Sidebar template</title>
+    <title>{{$titulo}}</title>
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 
 
@@ -612,7 +612,7 @@
 </div>
 <!-- page-wrapper -->
 {{--<script src="{{asset('js/jquery.dataTables.min.js')}}"></script>--}}
-<script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+
 <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('js/dataTables.bootstrap.min.js')}}"></script>
 
