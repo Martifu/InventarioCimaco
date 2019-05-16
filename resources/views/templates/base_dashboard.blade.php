@@ -1,6 +1,6 @@
-{{--<link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" id="bootstrap-css">--}}
+<link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" id="bootstrap-css">
 <link rel="stylesheet" href="{{asset('css/dataTables.bootstrap.min.css')}}">
-<link rel="stylesheet" href="{{asset('css/bootstrap.min3.css')}}">
+{{--<link rel="stylesheet" href="{{asset('css/bootstrap.min3.css')}}">--}}
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 
 
@@ -61,7 +61,7 @@
         }
     }
     body {
-        font-size: 1.5rem;
+        font-size: 1.0rem;
         background-color: #fcfaff;
     }
     .page-wrapper .sidebar-wrapper,
