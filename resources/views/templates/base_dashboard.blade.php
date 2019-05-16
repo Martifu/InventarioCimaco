@@ -1,6 +1,9 @@
-<link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" id="bootstrap-css">
+{{--<link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" id="bootstrap-css">--}}
+<link rel="stylesheet" href="{{asset('css/dataTables.bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{asset('css/bootstrap.min3.css')}}">
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
-<script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+
+
 <!------ Include the above in your HEAD tag ---------->
 
 <!DOCTYPE html>
@@ -12,8 +15,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
     <title>Sidebar template</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-          crossorigin="anonymous">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 
 
@@ -60,7 +61,7 @@
         }
     }
     body {
-        font-size: 0.9rem;
+        font-size: 1.5rem;
         background-color: #fcfaff;
     }
     .page-wrapper .sidebar-wrapper,
@@ -502,6 +503,7 @@
 
 </style>
 <body>
+@yield('cssextra')
 <div class="page-wrapper chiller-theme toggled">
     <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
         <i class="fas fa-bars"></i>
@@ -519,7 +521,7 @@
                     <img src="{{asset('img/perfil2.png')}}" style="width: 100%; height: 7%" alt="">
                 </div>
                 <div class="user-info">
-         <span style="color: white"  class="user-name">
+         <span style="color: white"  class="user-name">  {{ Auth::user()->name }} 
           </span> 
                     <span class="user-role">Administrator</span>
                     <span class="user-status">
@@ -528,46 +530,11 @@
           </span>
                 </div>
             </div>
-            <!-- sidebar-header  -->
-            {{--<div class="sidebar-search">--}}
-                {{--<div>--}}
-                    {{--<div class="input-group">--}}
-                        {{--<input type="text" class="form-control search-menu" placeholder="Search...">--}}
-                        {{--<div class="input-group-append">--}}
-              {{--<span class="input-group-text">--}}
-                {{--<i class="fa fa-search" aria-hidden="true"></i>--}}
-              {{--</span>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-            <!-- sidebar-search  -->
             <div class="sidebar-menu">
                 <ul>
                     <li class="header-menu">
                         <span>Activo fijo</span>
                     </li>
-                    {{--<li class="sidebar-dropdown">--}}
-                        {{--<a href="#">--}}
-                            {{--<i class="fa fa-tachometer-alt"></i>--}}
-                            {{--<span>Activo fijo</span>--}}
-                        {{--</a>--}}
-                        {{--<div class="sidebar-submenu">--}}
-                            {{--<ul>--}}
-                                {{--<li>--}}
-                                    {{--<a href="#">Dashboard 1--}}
-                                        {{--<span class="badge badge-pill badge-success">Pro</span>--}}
-                                    {{--</a>--}}
-                                {{--</li>--}}
-                                {{--<li>--}}
-                                    {{--<a href="#">Dashboard 2</a>--}}
-                                {{--</li>--}}
-                                {{--<li>--}}
-                                    {{--<a href="#">Dashboard 3</a>--}}
-                                {{--</li>--}}
-                            {{--</ul>--}}
-                        {{--</div>--}}
-                    {{--</li>--}}
                     <li>
                         <a href="/buscar">
                             <i class="fa fa-book"></i>
@@ -626,9 +593,9 @@
                
             </a>
             
-          <!--   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
              @csrf
-            </form> -->
+            </form> 
 
 
         </div>
@@ -638,15 +605,17 @@
         <div class="container-fluid">
             {{--Contenido--}}
             @yield('content')
-
         </div>
 
     </main>
     <!-- page-content" -->
 </div>
 <!-- page-wrapper -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
+{{--<script src="{{asset('js/jquery.dataTables.min.js')}}"></script>--}}
+<script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+<script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('js/dataTables.bootstrap.min.js')}}"></script>
+
 <script>
     jQuery(function ($) {
 
@@ -685,5 +654,5 @@
     });
 </script>
 </body>
-
+@yield('javascript')
 </html>

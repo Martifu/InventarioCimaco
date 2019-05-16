@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Equipos;
+use Closure;
+use Carbon\Carbon;
+
 
 class HomeController extends Controller
 {
@@ -52,8 +55,7 @@ class HomeController extends Controller
             'ip.required' => 'El campo IP es obligatorio',
            
         ]);
-        $date = Carbon::now();
-        $hoy = $date->format('Y-m-d'); 
+        
         $equipos = new Equipos();
         $equipos->num_serie=$request->input('num');
         $equipos->tipo_dispositivo=$request->input('dis');
@@ -61,10 +63,18 @@ class HomeController extends Controller
         $equipos->ubicacion=$request->input('ubi');
         $equipos->responsable=$request->input('res');
         $equipos->ip=$request->input('ip');
-       
+        $equipos->fecha_alta = Carbon::now();
         $equipos->save();
         \Session::flash('equipos',$equipos);
         return \Redirect::back();
 
 }
+  public function handle($request, Closure $next)
+    {
+        
+        
+        return redirect('/');
+    }
+
+
 }

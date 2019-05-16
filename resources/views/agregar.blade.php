@@ -1,7 +1,9 @@
 @extends('templates.base_dashboard')
 @section('title')
+
     
 @section('cssextra')
+  <meta name="csrf-token" content="{{ csrf_token() }}">  
     <style type="text/css">
        
         .contenido{
@@ -20,8 +22,8 @@
     </style>
 @stop
 @section('content')
-    <div class="contenido">
-        <div class="row justify-content-center">
+    <div class="container">
+        <div class="row">
             <div class="col col-md-7 align-self-center">
                 <div class="card text-white  mb-3">
 
@@ -39,7 +41,8 @@
                         @endif
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{url('/agregar')}}" class="needs-validation" novalidate>
+                    <form method="POST" action="{{url('/agregar')}}" class="needs-validation"  novalidate>
+                          
                             {{csrf_field()}}
                           
 
@@ -71,16 +74,12 @@
                                 <label for="ip">IP:</label>
                                 <input type="text" class="form-control" id="ip" name="ip" placeholder="" value="{{old('ip')}}">
                             </div>
-                             <div class="form-group" style="color: #000000">
-                                <label for="ip">Fecha de alta:</label>
-                                <input type="text" class="form-control" id="fec" name="fec" placeholder="" value="{{old('fec')}}">
-                            </div>
-
+                             
 
 
                             
                             @if (Session::has('equipos'))
-                                <div class="alert alert-info" role="alert">
+                                <div class="alert alert-info" role="alert" id="resultado">
                                     <strong> Equipo registrado</strong>
                                 </div>
                             @endif
@@ -88,7 +87,7 @@
                            
 
 
-                            <button type="submit" class="btn btn-primary btn-registrar">Registrar</button>
+                            <button type="submit" id="dd" class="btn btn-primary btn-registrar">Registrar</button>
                            
 
 
@@ -104,3 +103,31 @@
 @stop
 
    
+{{--@section('javascript')
+  <script>
+        $(document).ready(function () {
+          $('#dd').click(function () {
+                  
+                  token = $("input[name = '_token']").val();
+            
+                        $.ajax({
+                     url:"/agregar",
+                     data:{token: token},
+                     type:'GET',
+                     datatype: 'json',
+                     success:function (response) {
+                          console.log(token);
+                      
+                     
+                       
+                     }
+                 });
+        
+                 
+ });
+   
+ });
+
+       
+    </script> --}}
+@stop
