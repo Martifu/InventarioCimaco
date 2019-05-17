@@ -33,7 +33,7 @@ class HomeController extends Controller
     public function agregar()
     {
         $title = 'Registro';
-        return view('agregar');
+        return view('buscar');
     }
 
     function agregarequipo(Request $request)
@@ -69,11 +69,10 @@ class HomeController extends Controller
         return \Redirect::back();
 
 }
-  public function handle($request, Closure $next)
+ public function equipo_a_agregar(Request $request)
     {
-        
-        
-        return redirect('/');
+        $equipo = Equipos::where('id','=',$request->id)->get();
+        return $equipo;
     }
 
 

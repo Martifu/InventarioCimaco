@@ -23,6 +23,27 @@
 @stop
 @section('content')
  <!-- Button to trigger modal -->
+<div>
+                      
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <strong>Por favor corrige estos errores:</strong>
+                                <ul>
+                                @foreach($errors->all() as $error)
+                                <li>{{$error}}</li>
+                                @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                    </div>
+     
+                            @if (Session::has('equipos'))
+                                <div class="alert alert-info" role="alert" id="resultado">
+                                    <strong> Equipo registrado</strong>
+                                </div>
+                            @endif
+
+
 <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalForm">
     Open Contact Form
 </button>
@@ -49,19 +70,7 @@
 
                 <form method="POST" action="{{url('/agregar')}}" class="needs-validation"  novalidate>
                           
-                    <div>
-                      
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <strong>Por favor corrige estos errores:</strong>
-                                <ul>
-                                @foreach($errors->all() as $error)
-                                <li>{{$error}}</li>
-                                @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                    </div>
+                    
 
                             {{csrf_field()}}
                           
@@ -97,17 +106,11 @@
                              
 
 
-                            
-                            @if (Session::has('equipos'))
-                                <div class="alert alert-info" role="alert" id="resultado">
-                                    <strong> Equipo registrado</strong>
-                                </div>
-                            @endif
-
+                       
                            
 
 
-                            <button type="button" class="btn btn-primary submitBtn" id="dd">SUBMIT</button>
+                          <button id="guardar" type="Submit" class="btn btn-primary">Guardar</button>
                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
 
@@ -122,49 +125,4 @@
 
 
 
-@stop
-
-   
-@section('javascript')
-  <script>
-        $(document).ready(function () {
-          $('#dd').click(function () {
-                  
-                  token = $("input[name = '_token']").val();
-                    var numero = $('#num').val();
-                        $.ajax({
-                     url:"/agregar",
-                     data:{token: token},
-                     type:'GET',
-                     datatype: 'json',
-                       beforeSend: function () {
-
-                $('.submitBtn').attr("disabled","disabled");
-                $('.modal-body').css('opacity', '.5');
-                 alert('los datos fueron registrados correctamente');
-            },
-            
-
-
-            success:function(msg){
-                if(msg == 'ok'){
-                    $('num').val('');
-                   
-                }else{
-                    $('.statusMsg').html('<span style="color:red;">Some problem occurred, please try again.</span>');
-                }
-                $('.submitBtn').removeAttr("disabled");
-                $('.modal-body').css('opacity', '');
-            }
-                     
-                       
-                     
-                 });
-        
-                 
- });
-           });
-   
-
-    </script> 
 @stop
