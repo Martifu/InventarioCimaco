@@ -22,13 +22,35 @@
     </style>
 @stop
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col col-md-7 align-self-center">
-                <div class="card text-white  mb-3">
+ <!-- Button to trigger modal -->
+<button class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalForm">
+    Open Contact Form
+</button>
 
-                    <div class="card-header bg-dark">
-                        Registro
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalForm" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Contact Form</h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <p class="statusMsg"></p>
+                
+
+                <form method="POST" action="{{url('/agregar')}}" class="needs-validation"  novalidate>
+                          
+                    <div>
+                      
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <strong>Por favor corrige estos errores:</strong>
@@ -40,9 +62,7 @@
                             </div>
                         @endif
                     </div>
-                    <div class="card-body">
-                    <form method="POST" action="{{url('/agregar')}}" class="needs-validation"  novalidate>
-                          
+
                             {{csrf_field()}}
                           
 
@@ -87,47 +107,64 @@
                            
 
 
-                            <button type="submit" id="dd" class="btn btn-primary btn-registrar">Registrar</button>
-                           
+                            <button type="button" class="btn btn-primary submitBtn" id="dd">SUBMIT</button>
+                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
 
                         </form>
-                    </div>
-                </div>
             </div>
+            
+            <!-- Modal Footer -->
+           
         </div>
     </div>
+</div>
 
 
 
 @stop
 
    
-{{--@section('javascript')
+@section('javascript')
   <script>
         $(document).ready(function () {
           $('#dd').click(function () {
                   
                   token = $("input[name = '_token']").val();
-            
+                    var numero = $('#num').val();
                         $.ajax({
                      url:"/agregar",
                      data:{token: token},
                      type:'GET',
                      datatype: 'json',
-                     success:function (response) {
-                          console.log(token);
-                      
+                       beforeSend: function () {
+
+                $('.submitBtn').attr("disabled","disabled");
+                $('.modal-body').css('opacity', '.5');
+                 alert('los datos fueron registrados correctamente');
+            },
+            
+
+
+            success:function(msg){
+                if(msg == 'ok'){
+                    $('num').val('');
+                   
+                }else{
+                    $('.statusMsg').html('<span style="color:red;">Some problem occurred, please try again.</span>');
+                }
+                $('.submitBtn').removeAttr("disabled");
+                $('.modal-body').css('opacity', '');
+            }
                      
                        
-                     }
+                     
                  });
         
                  
  });
+           });
    
- });
 
-       
-    </script> --}}
+    </script> 
 @stop

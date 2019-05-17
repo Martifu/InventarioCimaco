@@ -32,3 +32,5 @@ Route::post('/agregar','HomeController@agregarequipo');
 
 Route::get('/buscar','EquiposController@buscar_view');
 //>>>>>>> 099d7d7a9861f4cfa5a5c5613fbe1ca15d95e643
+
+
