@@ -6,7 +6,8 @@
 @stop
 
 @section('content')
-   <div>
+   
+               <div>
                       
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -19,12 +20,14 @@
                             </div>
                         @endif
                     </div>
-     
+
+                    
                             @if (Session::has('equipos'))
                                 <div class="alert alert-info" role="alert" id="resultado">
                                     <strong> Equipo registrado</strong>
                                 </div>
                             @endif
+     
 
     <div >
         <h2>Activo Fijo</h2>
@@ -62,7 +65,8 @@
         @endforeach
     </table>
 
-<div class="modal fade" id="modalForm" role="dialog">
+
+<div class="modal" id="modalForm" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->
@@ -103,7 +107,7 @@
 
                             <div class="form-group" style="color: #000000">
                                 <label for="ubi">Ubicacion:</label>
-                                <input type="text" class="form-control" id="ubi" name="ubi" placeholder="" value="{{old('ubi')}}">
+                                <input type="text" class="form-control" id="ubic" name="ubi" placeholder="" value="{{old('ubi')}}">
                             </div>
 
                             <div class="form-group" style="color: #000000">
@@ -112,7 +116,7 @@
                             </div>
                             <div class="form-group" style="color: #000000">
                                 <label for="ip">IP:</label>
-                                <input type="text" class="form-control" id="ip" name="ip" placeholder="" value="{{old('ip')}}">
+                                <input type="text" class="form-control" id="ipe" name="ip" placeholder="" value="{{old('ip')}}">
                             </div>
                              
 
@@ -121,7 +125,7 @@
                            
 
 
-                          <button id="guardar" type="Submit" class="btn btn-primary">Guardar</button>
+                          <button  type="Submit" class="btn btn-primary">Guardar</button>
                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
 
@@ -132,21 +136,7 @@
            
         </div>
     </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div> 
 
 
 
@@ -202,7 +192,7 @@
                 </div>
             </div>
         </div>
-    </div>
+   
 @stop
 
 
@@ -296,3 +286,18 @@
         });
     </script>
 @stop
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
