@@ -32,7 +32,12 @@
     <div >
         <h2>Activo Fijo</h2>
     </div>
+
+
+              
     {{csrf_field()}}
+
+    <center> <button  style="font-weight: bold; color: white" class="btn btn-warning" data-toggle="modal" data-target="#modalForm">Agregar Equipo   <i class="fas fa-plus-circle" style="color: white;"></i></button>  </center>  
     <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
         <tr>
@@ -55,10 +60,14 @@
             <td>{{$equipo->ubicacion}}</td>
             <td>{{$equipo->responsable}}</td>
             <td>{{$equipo->ip}}</td>
-            <td><button id="editar" style="background-color: #16c7ff; border: 0px;" class="btn btn-primary btn-editar" href="#exampleModalCenter"><i class="far fa-edit"></i></button>
-                <button id="eliminar" style=" background-color: red; border: 0px;" class="btn btn-warning"><i class="far fa-trash-alt" style="color: white;"></i></button>
-                <button class="btn btn-warning" data-toggle="modal" data-target="#modalForm"><i class="far fa-trash-alt" style="color: white;"></i></button>
+            <td>
 
+
+                <button id="editar" style="background-color: #16c7ff; border: 0px;" class="btn btn-primary btn-editar" href="#exampleModalCenter"><i class="far fa-edit"></i></button>
+              
+               <a href="{{url('/eliminar', $equipo->id)}}" onclick="return confirm('¿Eliminar este equipo?')"> <button id="eliminar" style=" background-color: red; border: 0px;" class="btn btn-warning"><i class="far fa-trash-alt" style="color: white;"></i></button></a>
+                
+                 
 
             </td>
         </tr>
@@ -66,16 +75,32 @@
     </table>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- MODAL AGREGAR-->
+
+
 <div class="modal" id="modalForm" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">×</span>
-                    <span class="sr-only">Close</span>
+               
+                   <h5 class="modal-title" id="exampleModalCenterTitle">Agregar nuevo equipo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">Contact Form</h4>
+                
             </div>
             
             <!-- Modal Body -->
