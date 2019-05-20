@@ -550,18 +550,6 @@
                             <span>Buscar</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-book"></i>
-                            <span>Agregar</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/modificar">
-                            <i class="fa fa-book"></i>
-                            <span>Modificar</span>
-                        </a>
-                    </li>
 
                     <li class="header-menu">
                         <span>Reportes</span>

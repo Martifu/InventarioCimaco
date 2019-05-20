@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/principal', function () {
+Route::get('/buscar', function () {
     return view('templates.base_dashboard');
 });
 

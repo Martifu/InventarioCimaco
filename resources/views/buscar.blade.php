@@ -37,7 +37,7 @@
               
     {{csrf_field()}}
 
-    <center> <button  style="font-weight: bold; color: white" class="btn btn-warning" data-toggle="modal" data-target="#modalForm">Agregar Equipo   <i class="fas fa-plus-circle" style="color: white;"></i></button>  </center>  
+    <center> <button  style="font-weight: bold; color: white" class="btn btn-warning" data-toggle="modal" data-target="#modalForm">Agregar Equipo <i class="fas fa-plus-circle" style="color: white;"></i></button>  </center>  
     <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
         <tr>
@@ -65,7 +65,9 @@
 
                 <button id="editar" style="background-color: #16c7ff; border: 0px;" class="btn btn-primary btn-editar" href="#exampleModalCenter"><i class="far fa-edit"></i></button>
               
-               <a href="{{url('/eliminar', $equipo->id)}}" onclick="return confirm('¿Eliminar este equipo?')"> <button id="eliminar" style=" background-color: red; border: 0px;" class="btn btn-warning"><i class="far fa-trash-alt" style="color: white;"></i></button></a>
+               
+                <a href="{{url('/eliminar', $equipo->id)}}" onclick="return confirm('¿Eliminar este equipo?')"> <button id="eliminar" style=" background-color: red; border: 0px;" class="btn btn-warning"><i class="far fa-trash-alt" style="color: white;"></i></button></a>
+            
                 
                  
 
@@ -76,20 +78,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 <!-- MODAL AGREGAR-->
-
-
 <div class="modal" id="modalForm" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -151,7 +140,7 @@
 
 
                           <button  type="Submit" class="btn btn-primary">Guardar</button>
-                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 
 
                         </form>
@@ -174,13 +163,18 @@
 
 
 
+
+
+
+
+
     <!-- Modal Editar-->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     {{csrf_field()}}
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Agregar nuevo equipo</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Actualizar equipo</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -207,7 +201,7 @@
                             <label for="">Responsable</label> <input id="respo" class="" type="text">
                         </div>
                         <div class="col">
-                            <label for="">IP</label> <input id="ip" class="" type="text">
+                            <label for="">IP</label><br> <input id="ip" class="" type="text">
                         </div>
                     </div>
                 </div>
@@ -310,6 +304,12 @@
             });
         });
     </script>
+
+
+
+
+
+
 @stop
 
 
