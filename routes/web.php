@@ -24,20 +24,17 @@ Route::get('equipos','EquiposController@equipos');
 Auth::routes();
 
 Route::get('/principal', 'HomeController@index')->name('principal');
+Route::get('/buscar','EquiposController@buscar_view');
 
+//Agregar
 Route::get('/agregar', 'HomeController@agregar');
-
 Route::post('/agregar','HomeController@agregarequipo');
 
-Route::get('/buscar','EquiposController@buscar_view');
-route::get("/eliminar/{id}","EquiposController@equipo_a_eliminar");
-//<<<<<<< HEAD
-//>>>>>>> 099d7d7a9861f4cfa5a5c5613fbe1ca15d95e643
+//Eliminar
+Route::post("/eliminado","EquiposController@equipo_a_eliminar");
+Route::post('/aeliminar', 'EquiposController@aeliminar');
 
-
-//=======
-
+//Editar
 Route::post('/equipo_a_editar', 'EquiposController@equipo_a_editar');
-
 Route::post('/actualizarequipo', 'EquiposController@actualizarequipo');
-//>>>>>>> 74a2f19857ef0d05a81f86bda925152182fb8380
+

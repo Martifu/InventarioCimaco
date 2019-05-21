@@ -61,16 +61,8 @@
             <td>{{$equipo->responsable}}</td>
             <td>{{$equipo->ip}}</td>
             <td>
-
-
                 <button id="editar" style="background-color: #16c7ff; border: 0px;" class="btn btn-primary btn-editar" href="#exampleModalCenter"><i class="far fa-edit"></i></button>
-              
-               
-                <a href="{{url('/eliminar', $equipo->id)}}" onclick="return confirm('¿Eliminar este equipo?')"> <button id="eliminar" style=" background-color: red; border: 0px;" class="btn btn-warning"><i class="far fa-trash-alt" style="color: white;"></i></button></a>
-            
-                
-                 
-
+                <button id="eliminar" style=" background-color: red; border: 0px;" class="btn btn-warning .btn-eliminar"  href="#exampleModalEliminar"><i class="far fa-trash-alt" style="color: white;"></i></button>
             </td>
         </tr>
         @endforeach
@@ -84,26 +76,16 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-               
                    <h5 class="modal-title" id="exampleModalCenterTitle">Agregar nuevo equipo</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                          <span aria-hidden="true">&times;</span>
                 </button>
-                
             </div>
-            
             <!-- Modal Body -->
             <div class="modal-body">
                 <p class="statusMsg"></p>
-                
-
                 <form method="POST" action="{{url('/agregar')}}" class="needs-validation"  novalidate>
-                          
-                    
-
                             {{csrf_field()}}
-                          
-
                             <div class="form-group" style="color: #000000">
                                 <label for="num">Numero de serie:</label>
                                 <input type="text" class="form-control" id="num" name="num" placeholder="" value="{{old('num')}}">
@@ -132,15 +114,8 @@
                                 <label for="ip">IP:</label>
                                 <input type="text" class="form-control" id="ipe" name="ip" placeholder="" value="{{old('ip')}}">
                             </div>
-                             
-
-
-                       
-                           
-
-
                           <button  type="Submit" class="btn btn-primary">Guardar</button>
-                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 
 
                         </form>
@@ -152,29 +127,13 @@
     </div>
 </div> 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- Modal Editar-->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="exampleModalEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     {{csrf_field()}}
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Actualizar equipo</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Eliminar equipo</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -182,32 +141,59 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col">
-                            <label for="noserie">N° Serie</label> <input id="noserie" class="" type="text">
-                        </div>
-                        <div class="col">
-                            <label for="">Tipo Disp.</label> <input id="tipo" class="" type="text">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <label for="">Marca</label> <input id="marca" class="" type="text">
-                        </div>
-                        <div class="col">
-                            <label for="">Ubicación</label> <input id="ubi" class="" type="text">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <label for="">Responsable</label> <input id="respo" class="" type="text">
-                        </div>
-                        <div class="col">
-                            <label for="">IP</label><br> <input id="ip" class="" type="text">
+                            <label for="noserie">¿Desea eliminar </label> <label id="aeliminar" for=""></label>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button id="guardar" type="button" class="btn btn-primary">Guardar</button>
+                    <button id="confirmar" type="button" class="btn btn-primary btn-confirmar">
+                        Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        {{csrf_field()}}
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Actualizar equipo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <label for="noserie">N° Serie</label> <input id="noserie" class="" type="text">
+                            </div>
+                            <div class="col">
+                                <label for="">Tipo Disp.</label> <input id="tipo" class="" type="text">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="">Marca</label> <input id="marca" class="" type="text">
+                            </div>
+                            <div class="col">
+                                <label for="">Ubicación</label> <input id="ubi" class="" type="text">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="">Responsable</label> <input id="respo" class="" type="text">
+                            </div>
+                            <div class="col">
+                                <label for="">IP</label><br> <input id="ip" class="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button id="guardar" type="button" class="btn btn-primary">Guardar</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -221,6 +207,44 @@
         $(document).ready(function() {
             $('#example').DataTable({
                 "bPaginate": false,
+            });
+            //Eliminar equipo
+            $('#eliminar').on("click",function () {
+                var token = $('input[name=_token]').val();
+                var id = $(this).parent().parent().find('.id').val();
+                var equipo = $('#aeliminar');
+                $.ajax({
+                    url: "/aeliminar",
+                    type: 'POST',
+                    datatype: 'json',
+                    data: {
+                        id: id,
+                        _token: token
+                    },
+                    success: function (response) {
+                        equipo.html('');
+                        $('#exampleModalEliminar').modal('show');
+                        equipo.append(response[0].tipo_dispositivo + ' con n° de serie: ' + response[0].num_serie + '?');
+                        console.log(response);
+                    }
+                });
+
+                $('.btn-confirmar').click(function () {
+                    var load = $('#confirmar');
+                    load.html('Eliminando '+' <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+                    $.ajax({
+                        url: "/eliminado",
+                        type: 'POST',
+                        datatype: 'json',
+                        data: {
+                            id: id,
+                            _token: token
+                        },
+                        success: function (response) {
+                            location.href = '/buscar';
+                        }
+                    });
+                });
             });
             //Carga datos del equipo a editar
             $('.btn-editar').on("click", function () {
@@ -256,6 +280,7 @@
                         ip.val(response[0].ip);
                     }
                 });
+
                 //Guarda equipo editado
                 $("#guardar").click(function () {
                     // var id = $(this).parent().parent().find('#id').val();
@@ -268,6 +293,8 @@
                     var ip = $('#ip').val();
                     var tabla = $('#tabla');
                     var tabla2 = "";
+                    var load = $('#guardar');
+                    load.html('Actualizando '+' <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
                     $.ajax({
                         url: "/actualizarequipo",
                         type: 'POST',

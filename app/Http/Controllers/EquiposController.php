@@ -32,9 +32,15 @@ class EquiposController extends Controller
         return $equipo;
     }
 
-   function equipo_a_eliminar($id){
-        $Equipo = Equipos::findOrFail($id);
-        $Equipo->delete($id);
+    function aeliminar(Request $request)
+    {
+        $equipo = Equipos::where('id','=',$request->id)->get();
+        return $equipo;
+    }
+
+   function equipo_a_eliminar(Request $request){
+        $Equipo = Equipos::findOrFail($request->id);
+        $Equipo->delete($request->id);
         return redirect("/buscar");
     }
 
