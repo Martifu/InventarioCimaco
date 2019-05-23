@@ -7,7 +7,7 @@
 
 @section('content')
    
-               <div>
+                      <div>
                       
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -20,31 +20,35 @@
                             </div>
                         @endif
                     </div>
-
-                    
                             @if (Session::has('equipos'))
-                                <div class="alert alert-info" role="alert" id="resultado">
-                                    <strong> Equipo registrado</strong>
-                                </div>
+                                <script>
+                                    var hulla = new hullabaloo();
+                                    hulla.send("Equipo agregado", "success");
+                                </script>
                             @endif
-     
-
-    <div >
-        <h2>Activo Fijo</h2>
+    <div class="header">
+        <div class="row">
+            <div class="col">
+                <h2>Activo Fijo</h2>
+            </div>
+        </div>
+        <div class="row mb-1">
+            <div class="col offset-5"></div>
+            <div class="col">
+                <button class="btn btn-outline-primary btn-activofijo">Generar reporte</button>
+            </div>
+            <div class="col">
+                <button style="font-weight: bold; color: white; background-color: #45bc5d;" class="btn btn-outline-" data-toggle="modal" data-target="#modalForm">Agregar Equipo <i class="fas fa-plus-circle" style="color: white;"></i></button>
+            </div>
+        </div>
     </div>
-
-
-              
-    {{csrf_field()}}
-
-    <center> <button  style="font-weight: bold; color: white" class="btn btn-warning" data-toggle="modal" data-target="#modalForm">Agregar Equipo <i class="fas fa-plus-circle" style="color: white;"></i></button>  </center>  
     <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
         <tr>
             <th>N° Serie</th>
             <th>Tipo Disp.</th>
             <th>Marca</th>
-            <th>Ubicación</th>
+            <th>Departamento</th>
             <th>Responsable</th>
             <th>IP</th>
             <th>Acciones</th>
@@ -53,16 +57,16 @@
         <tbody id="tabla">
         @foreach($equipos as $equipo)
         <tr>
-            <input type="hidden" class="id" value="{{$equipo->id}}">
+            <input type="hidden" class="id" value="{{$equipo->id}}" name="ids">
             <td>{{$equipo->num_serie}}</td>
-            <td>{{$equipo->tipo_dispositivo}}</td>
-            <td>{{$equipo->marca}}</td>
-            <td>{{$equipo->ubicacion}}</td>
+            <td>{{$equipo->tipo['nombre']}}</td>
+            <td>{{$equipo->marca['nombre']}}</td>
+            <td>{{$equipo->departamento['nombre']}}</td>
             <td>{{$equipo->responsable}}</td>
             <td>{{$equipo->ip}}</td>
             <td>
                 <button id="editar" style="background-color: #16c7ff; border: 0px;" class="btn btn-primary btn-editar" href="#exampleModalCenter"><i class="far fa-edit"></i></button>
-                <button id="eliminar" style=" background-color: red; border: 0px;" class="btn btn-warning .btn-eliminar"  href="#exampleModalEliminar"><i class="far fa-trash-alt" style="color: white;"></i></button>
+                <button id="eliminar" style=" background-color: red; border: 0px;" class="btn btn-warning btn-eliminar"  href="#exampleModalEliminar"><i class="far fa-trash-alt" style="color: white;"></i></button>
             </td>
         </tr>
         @endforeach
@@ -127,7 +131,7 @@
     </div>
 </div> 
 
-    <!-- Modal Editar-->
+
     <div class="modal fade" id="exampleModalEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -141,19 +145,20 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col">
-                            <label for="noserie">¿Desea eliminar </label> <label id="aeliminar" for=""></label>
+                            <label id="aeliminar" for=""></label>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button id="confirmar" type="button" class="btn btn-primary btn-confirmar">
+                    <button id="eliminado" type="button" class="btn btn-primary btn-eliminado">
                         Confirmar</button>
                 </div>
             </div>
         </div>
     </div>
 
+                      <!-- Modal Editar-->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -209,10 +214,10 @@
                 "bPaginate": false,
             });
             //Eliminar equipo
-            $('#eliminar').on("click",function () {
+            $('.btn-eliminar').on("click",function () {
                 var token = $('input[name=_token]').val();
                 var id = $(this).parent().parent().find('.id').val();
-                var equipo = $('#aeliminar');
+                console.log(id);
                 $.ajax({
                     url: "/aeliminar",
                     type: 'POST',
@@ -222,15 +227,16 @@
                         _token: token
                     },
                     success: function (response) {
-                        equipo.html('');
+                        var equipo = $('#aeliminar');
+                        equipo.html('¿Desea eliminar ');
                         $('#exampleModalEliminar').modal('show');
                         equipo.append(response[0].tipo_dispositivo + ' con n° de serie: ' + response[0].num_serie + '?');
                         console.log(response);
                     }
                 });
 
-                $('.btn-confirmar').click(function () {
-                    var load = $('#confirmar');
+                $('.btn-eliminado').click(function () {
+                    var load = $('#eliminado');
                     load.html('Eliminando '+' <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
                     $.ajax({
                         url: "/eliminado",
@@ -250,7 +256,6 @@
             $('.btn-editar').on("click", function () {
                 var token = $('input[name=_token]').val();
                 var id = $(this).parent().parent().find('.id').val();
-                $('#exampleModalCenter').modal('show');
                 var serie = $('#noserie');
                 var tipo = $('#tipo');
                 var marca = $('#marca');
@@ -272,10 +277,12 @@
                         _token: token
                     },
                     success: function (response) {
+                        $('#exampleModalCenter').modal('show');
+                        console.log(response);
                         serie.val(response[0].num_serie);
-                        tipo.val(response[0].tipo_dispositivo);
-                        marca.val(response[0].marca);
-                        ubi.val(response[0].ubicacion);
+                        tipo.val(response[0].tipo['nombre']);
+                        marca.val(response[0].marca['nombre']);
+                        ubi.val(response[0].departamento['nombre']);
                         respo.val(response[0].responsable);
                         ip.val(response[0].ip);
                     }
@@ -283,7 +290,6 @@
 
                 //Guarda equipo editado
                 $("#guardar").click(function () {
-                    // var id = $(this).parent().parent().find('#id').val();
                     var token = $("input[name='_token']").val();
                     var serie = $('#noserie').val();
                     var tipo = $('#tipo').val();
@@ -327,6 +333,29 @@
                             location.href='/buscar';
                         }
                     });
+                });
+            });
+
+            $('.btn-activofijo').click(function () {
+                var token = $('input[name=_token]').val();
+                var values = [];
+                $("input[name='ids']").each(function() {
+                    values.push($(this).val());
+                });
+                console.log(values);
+                $.ajax({
+                    url: "/reporte_activofijo",
+                    type: 'POST',
+                    datatype: 'json',
+                    data: {
+                        ids: values,
+                        _token: token
+                    },
+                    success: function (response) {
+                        var pdf= window.open("");
+                        pdf.document.write("<iframe width='100%' height='100%'"+
+                            " src='data:application/pdf;base64, " + encodeURI(response)+"'></iframe>");
+                    }
                 });
             });
         });

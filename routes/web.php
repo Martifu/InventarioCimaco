@@ -38,3 +38,8 @@ Route::post('/aeliminar', 'EquiposController@aeliminar');
 Route::post('/equipo_a_editar', 'EquiposController@equipo_a_editar');
 Route::post('/actualizarequipo', 'EquiposController@actualizarequipo');
 
+//PDFs Reportes
+Route::post('/reporte_activofijo','EquiposController@activofijo');
+
+Route::get('/todo','EquiposController@todo');
+
