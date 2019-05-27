@@ -30,50 +30,7 @@ class HomeController extends Controller
         return view('templates.base_dashboard');
     }
 
-    public function agregar()
-    {
-        $title = 'Registro';
-        return view('buscar');
-    }
 
-    function agregarequipo(Request $request)
-    {
-        $request->validate([
-            'num' => 'required|max:100',
-            'dis' => 'required|max:100',
-            'mar' => 'required|max:100',
-            'ubi' => 'required|max:100',
-            'res' => 'required|max:100',
-            'ip' => 'required|max:100',
-              
-        ],[
-            'num.required' => 'El campo numero de serie es obligatorio',
-            'dis.required' => 'El campo tipo de dispositivo es obligatorio',
-            'mar.required' => 'El campo marca es obligatorio',
-            'ubi.required' => 'El campo ubicacion es obligatorio',
-            'res.required' => 'El campo responsable es obligatorio',
-            'ip.required' => 'El campo IP es obligatorio',
-           
-        ]);
-        
-        $equipos = new Equipos();
-        $equipos->num_serie=$request->input('num');
-        $equipos->tipo_dispositivo=$request->input('dis');
-        $equipos->marca=$request->input('mar');
-        $equipos->ubicacion=$request->input('ubi');
-        $equipos->responsable=$request->input('res');
-        $equipos->ip=$request->input('ip');
-        $equipos->fecha_alta = Carbon::now();
-        $equipos->save();
-        \Session::flash('equipos',$equipos);
-        return \Redirect::back();
-
-}
- public function equipo_a_agregar(Request $request)
-    {
-        $equipo = Equipos::where('id','=',$request->id)->get();
-        return $equipo;
-    }
 
 
 }

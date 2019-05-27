@@ -7,6 +7,7 @@ use Barryvdh\DomPDF\Facade as PDF;
 use App;
 use Carbon\Carbon;
 use App\Equipos;
+use App\Tipos;
 use Illuminate\Http\Request;
 
 class EquiposController extends Controller
@@ -93,5 +94,58 @@ class EquiposController extends Controller
         $todo =  Equipos::with('departamento','marca','tipo','proveedor','tienda')->get();
         return $todo;
     }
+
+    public function agregar()
+    {
+        $title = 'Registro';
+        $tipos = DB::table('tipos')->get();
+        return view('buscar', compact('tipos'));
+    }
+
+    function agregarequipo(Request $request)
+    {
+       
+
+        $request->validate([
+            'num' => 'required|max:100',
+            'mar' => 'required|max:100',
+            'ubi' => 'required|max:100',
+            'res' => 'required|max:100',
+            'ip' => 'required|max:100',
+              
+        ],[
+            'num.required' => 'El campo numero de serie es obligatorio',
+            'mar.required' => 'El campo marca es obligatorio',
+            'ubi.required' => 'El campo ubicacion es obligatorio',
+            'res.required' => 'El campo responsable es obligatorio',
+            'ip.required' => 'El campo IP es obligatorio',
+           
+        ]);
+        
+ 
+        $equipos = new Equipos();
+        $equipos->num_serie=$request->input('num');
+        $equipos->responsable=$request->input('res');
+        $equipos->ip=$request->input('ip');
+        $equipos->id_tipo = $request->get('tipo');
+        
+      /*  $equipos->id_marca = $request->marca;
+        $equipos->id_tipo = $request->tipo;
+        $equipos->id_departamento = $request->departamento;
+        $equipos->id_proveedor = $request->proveedor;
+        $equipos->id_tienda = $request->tienda; */
+        $equipos->fecha_alta = Carbon::now();
+        $equipos->save();
+         $equipos = Tipos::all();
+        \Session::flash('equipos',$equipos);
+        return \Redirect::back();
+}
+ public function equipo_a_agregar(Request $request)
+    {
+        $equipo = Equipos::where('id','=',$request->id)->get();
+        return $equipo;
+    }
+    
+     
 
 }

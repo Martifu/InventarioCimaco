@@ -38,7 +38,7 @@
                 <button class="btn btn-outline-primary btn-activofijo">Generar reporte</button>
             </div>
             <div class="col">
-                <button style="font-weight: bold; color: white; background-color: #45bc5d;" class="btn btn-outline-" data-toggle="modal" data-target="#modalForm">Agregar Equipo <i class="fas fa-plus-circle" style="color: white;"></i></button>
+                <button style="font-weight: bold; color: white; background-color: #45bc5d;" class="btn btn-outline-"data-toggle="modal" data-target="#modalForm">Agregar Equipo <i class="fas fa-plus-circle" style="color: white;"></i></button>
             </div>
         </div>
     </div>
@@ -88,17 +88,25 @@
             <!-- Modal Body -->
             <div class="modal-body">
                 <p class="statusMsg"></p>
-                <form method="POST" action="{{url('/agregar')}}" class="needs-validation"  novalidate>
+                <form method="POST" action="{{url('/agregar')}}" class="needs-validation" novalidate>
                             {{csrf_field()}}
                             <div class="form-group" style="color: #000000">
                                 <label for="num">Numero de serie:</label>
                                 <input type="text" class="form-control" id="num" name="num" placeholder="" value="{{old('num')}}">
                             </div>
                             
-                             <div class="form-group" style="color: #000000">
-                                <label for="dis">Tipo de dispositivo:</label>
-                                <input type="text" class="form-control" id="dis" name="dis" placeholder="" value="{{old('dis')}}">
-                            </div>
+                           
+
+
+
+                         <div class="form-group">
+                <label for="">Tipo de dispositivo</label>
+                <select class="form-control" id="select" name="tipo">
+                        @foreach($equipos as $equipo)
+                       <option value="{{$equipo->id}}">{{$equipo->id_tipo}}</option>
+                        @endforeach
+                </select>
+        </div>  
 
                             <div class="form-group" style="color: #000000">
                                 <label for="mar">Marca:</label>
@@ -358,6 +366,11 @@
                     }
                 });
             });
+        
+          
+
+
+
         });
     </script>
 

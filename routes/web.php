@@ -27,8 +27,10 @@ Route::get('/principal', 'HomeController@index')->name('principal');
 Route::get('/buscar','EquiposController@buscar_view');
 
 //Agregar
-Route::get('/agregar', 'HomeController@agregar');
-Route::post('/agregar','HomeController@agregarequipo');
+Route::get('/agregar', 'EquiposController@agregar');
+Route::post('/agregar','EquiposController@agregarequipo');
+Route::get('/tipos', 'EquiposController@Tipos');
+Route::post('/tipos','EquiposController@Tipos2');
 
 //Eliminar
 Route::post("/eliminado","EquiposController@equipo_a_eliminar");
