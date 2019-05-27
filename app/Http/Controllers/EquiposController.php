@@ -8,6 +8,10 @@ use App;
 use Carbon\Carbon;
 use App\Equipos;
 use App\Tipos;
+use App\Departamentos;
+use App\Marcas;
+use App\Proveedores;
+use App\Tiendas;
 use Illuminate\Http\Request;
 
 class EquiposController extends Controller
@@ -27,7 +31,14 @@ class EquiposController extends Controller
     {
         $titulo = "Activo fijo";
         $equipos = Equipos::with('departamento','marca','tipo','proveedor','tienda')->get();
-        return view('buscar',compact('equipos','titulo'));
+        $tipos = Tipos::all();
+        $departamentos = Departamentos::all();
+        $marcas = Marcas::all();
+        $tiendas = Tiendas::all();
+        $proveedores = Proveedores::all();
+
+        return view('buscar',compact('equipos','titulo','tipos','departamentos','marcas',
+            'tiendas','proveedores'));
     }
 
     public function equipo_a_editar(Request $request)
@@ -38,7 +49,7 @@ class EquiposController extends Controller
 
     function aeliminar(Request $request)
     {
-        $equipo = Equipos::where('id','=',$request->id)->get();
+        $equipo = Equipos::with('tipo')->where('id','=',$request->id)->get();
         return $equipo;
     }
 
@@ -104,41 +115,37 @@ class EquiposController extends Controller
 
     function agregarequipo(Request $request)
     {
-       
+       $num_serie = $request->input('serie');
+       $precio_verificando = $request->input('precio');
+        $equipo_existente = Equipos::where('num_serie',$num_serie)->get();
+        if ($equipo_existente->isEmpty()){
+            $equipos = new Equipos();
+            $equipos->num_serie=$request->input('serie');
+            $equipos->responsable=$request->input('responsable');
+            $equipos->id_tipo = $request->get('tipo');
+            $equipos->id_marca = $request->get('marca');
+            $equipos->id_departamento = $request->get('departamento');
+            $equipos->id_proveedor = $request->get('proveedor');
+            $equipos->id_tienda = $request->get('tienda');
+            $equipos->ip=$request->input('ip');
+            $equipos->precio = $request->input('precio');
+            $equipos->modelo = $request->input('modelo');
+            $equipos->descripcion = $request->input('descripcion');
+            $equipos->fecha_alta = Carbon::now();
+            $equipos->save();
+            $equipos = Tipos::all();
+            \Session::flash('equipos',$equipos);
+            return \Redirect::back();
+        }
+       if ($equipo_existente[0]->num_serie){
+           return 'El numero de serie ya existe';
+       }
 
-        $request->validate([
-            'num' => 'required|max:100',
-            'mar' => 'required|max:100',
-            'ubi' => 'required|max:100',
-            'res' => 'required|max:100',
-            'ip' => 'required|max:100',
-              
-        ],[
-            'num.required' => 'El campo numero de serie es obligatorio',
-            'mar.required' => 'El campo marca es obligatorio',
-            'ubi.required' => 'El campo ubicacion es obligatorio',
-            'res.required' => 'El campo responsable es obligatorio',
-            'ip.required' => 'El campo IP es obligatorio',
-           
-        ]);
-        
- 
-        $equipos = new Equipos();
-        $equipos->num_serie=$request->input('num');
-        $equipos->responsable=$request->input('res');
-        $equipos->ip=$request->input('ip');
-        $equipos->id_tipo = $request->get('tipo');
-        
-      /*  $equipos->id_marca = $request->marca;
-        $equipos->id_tipo = $request->tipo;
-        $equipos->id_departamento = $request->departamento;
-        $equipos->id_proveedor = $request->proveedor;
-        $equipos->id_tienda = $request->tienda; */
-        $equipos->fecha_alta = Carbon::now();
-        $equipos->save();
-         $equipos = Tipos::all();
-        \Session::flash('equipos',$equipos);
-        return \Redirect::back();
+
+
+
+
+
 }
  public function equipo_a_agregar(Request $request)
     {
