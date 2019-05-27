@@ -357,7 +357,7 @@
                     success: function (response) {
                         var equipo = $('#aeliminar');
                         console.log(response);
-                        equipo.html();
+                        equipo.html('');
                         $('#exampleModalEliminar').modal('show');
                         equipo.append('¿Desea eliminar '+'<strong style="color: #1d68a7; font-weight: bold">'+response[0].tipo["nombre"]+'</strong>' + ' con n° de serie: ' + '<strong style="color: #1d68a7; font-weight: bold">'+response[0].num_serie+'</strong>' + '?');
                         console.log(response);
