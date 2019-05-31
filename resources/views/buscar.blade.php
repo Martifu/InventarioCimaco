@@ -324,7 +324,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="modelo">Modelo:</label>
-                                <input type="text" class="form-control modelo" id="" name="modelo" value="{{old('modelo')}}">
+                                <input type="text" class="form-control" id="modelo" name="modelo" value="{{old('modelo')}}">
                             </div>
                         </div>
                     </div>
@@ -333,7 +333,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="precio">Precio del equipo:</label>
-                                <input class="form-control" type="text" id="precio" name="precio" placeholder="$ 0.00"><span id="errmsg"></span>
+                                <input class="form-control" type="text" id="precio" name="precio" placeholder="$ 0.00" value="{{old('precio')}}"><span id="errmsg"></span>
                             </div>
                         </div>
                     </div>
@@ -471,9 +471,9 @@
                 var tienda = $('.tienda');  
                 var responsable = $('#responsable');
                 var ip = $('#ip');
-                var modelo = $('.modelo');
+                var modelo = $('#modelo');
                 var descripcion = $('.descripcion');
-                var precio = $('#precio');
+                var precio = $('#precio')
                 serie.val('');
                 tipo.val('');
                 marca.val('');
@@ -494,7 +494,6 @@
                         _token: token
                     },
                     success: function (response) {
-                        console.log(response);
                         $('#exampleModalCenter').modal('show');
                         serie.val(response[0].num_serie);
                         tipo.val(response[0].tipo['nombre']);
@@ -523,11 +522,12 @@
                     var ip = $('#ip').val();
                     var modelo = $('#modelo').val();
                     var descripcion = $('.descripcion').val();
+                    var precio = $('#precio').val();
                     var tabla = $('#tabla');
                     var tabla2 = "";
                     var load = $('#guardar');
                     load.html('Actualizando '+' <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
-                  console.log(id,serie,tipo,departamento,marca,proveedor,tienda, responsable,ip,modelo,descripcion);
+                  console.log(id,serie,tipo,departamento,marca,proveedor,tienda, responsable,ip,modelo,descripcion, precio);
                     $.ajax({
                         url: "/actualizarequipo",
                         type: 'POST',
@@ -544,6 +544,7 @@
                             ip: ip,
                             modelo: modelo,
                             descripcion, descripcion,
+                            precio, precio,
                             _token: token
                         },
                        
