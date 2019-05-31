@@ -90,11 +90,11 @@ class EquiposController extends Controller
 //        return $pdf->stream();
         $ids = $request->ids;
         $equipos = [];
-        for ($i=0; $i<sizeof($ids); $i++)
-        {
-            $equipo = Equipos::where('id',$ids[$i])->get();
+        for ($i=0; $i<sizeof($ids) - 1; $i++) {
+            $equipo = Equipos::with('departamento','marca','tipo','proveedor','tienda')->where('id', $ids[$i])->get();
             $equipos[$i] = $equipo[0];
         }
+        $nombre = end($ids);
         $data = ['equipos' => $equipos];
         $pdf = PDF::loadView('reportes.activofijo', $data);
         return base64_encode($pdf->stream('invoice.pdf'));

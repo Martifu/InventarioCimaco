@@ -8,33 +8,116 @@
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" id="bootstrap-css">
     <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
-    <title>Activo fijo</title>
+    <title></title>
 </head>
 <body>
 <style>
+    body{
+        font-size: 9px;
+    }
+    table{
+        table-layout: fixed;
+        width: 100%;
+    }
 
+    th, td {
+        width: 140px;
+        word-wrap: break-word;
+    }
+    .contenedor{
+        background-color:#CCC;
+        width:2900px;
+        height:100px;
+        display:flex;
+        justify-content: space-between;
+    }
+    .contenido{
+        height:80px;
+        width:10%;
+        float:left;
+        margin: 10px;
+    }
 </style>
-<table class="table">
-    <thead>
+<header style="margin: auto; margin-left: 280px">Compañía Comercial Cimaco S.A. de C.V.</header>
+<div class="contenedor">
+    <div class="contenido">30/Mayo/2019</div>
+    <div class="contenido">Sistema de Activo Fijo
+        <br><br> Reporte de Consultas</div>
+    <div class="contenido">15:50:00</div>
+</div>
+
+<TABLE border="1" frame="border" rules="groups">
+    <CAPTION>Ejemplo de grupos de columnas y líneas</CAPTION>
+    <COLGROUP align="center">
+    <COLGROUP align="left">
+    <COLGROUP align="center" span="2">
+    <COLGROUP align="center" span="3">
+
+    <THEAD valign="top">
     <tr>
-        <th scope="col">N° serie</th>
-        <th scope="col">Tipo dispositivo</th>
-        <th scope="col">Ip</th>
-        <th scope="col">N° serie</th>
-        <th scope="col">Tipo dispositivo</th>
+        <th>N° serie</th>
+        <th>Descripcion</th>
+        <th>Departamento</th>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Tipo dispositivo</th>
+        <th>Tienda</th>
+        <th>Proveedor</th>
+        <th>Precio</th>
+        <th>Fecha</th>
+        <th>Responsable</th>
     </tr>
-    </thead>
-    <tbody>
+    <TBODY>
     @foreach($equipos as $equipo)
-    <tr>
-        <td>{{$equipo->num_serie}}</td>
-        <td>{{$equipo->tipo_dispositivo}}</td>
-        <td>{{$equipo->ip}}</td>
-        <td>{{$equipo->num_serie}}</td>
-        <td>{{$equipo->tipo_dispositivo}}</td>
-    </tr>
+        <tr>
+            <td>{{$equipo->num_serie}}</td>
+            <td>{{$equipo->descripcion}}</td>
+            <td>{{$equipo->departamento['nombre']}}</td>
+            <td>{{$equipo->marca['nombre']}}</td>
+            <td>{{$equipo->modelo}}</td>
+            <td>{{$equipo->tipo['nombre']}}</td>
+            <td>{{$equipo->tienda['nombre']}}</td>
+            <td>{{$equipo->proveedor['nombre']}}</td>
+            <td>$ {{$equipo->precio}}</td>
+            <td>{{$equipo->fecha_alta}}</td>
+            <td>{{$equipo->responsable}}</td>
+        </tr>
     @endforeach
-    </tbody>
-</table>
+    <TBODY>
+</TABLE>
+{{--<table class="">--}}
+{{--    <thead>--}}
+{{--    <tr>--}}
+{{--        <th>N° serie</th>--}}
+{{--        <th>Descripcion</th>--}}
+{{--        <th>Departamento</th>--}}
+{{--        <th>Marca</th>--}}
+{{--        <th>Modelo</th>--}}
+{{--        <th>Tipo dispositivo</th>--}}
+{{--        <th>Tienda</th>--}}
+{{--        <th>Proveedor</th>--}}
+{{--        <th>Precio</th>--}}
+{{--        <th>Fecha</th>--}}
+{{--        <th>Responsable</th>--}}
+{{--    </tr>--}}
+{{--    </thead>--}}
+{{--    <tbody>--}}
+{{--    @foreach($equipos as $equipo)--}}
+{{--    <tr>--}}
+{{--        <td>{{$equipo->num_serie}}</td>--}}
+{{--        <td>{{$equipo->descripcion}}</td>--}}
+{{--        <td>{{$equipo->departamento['nombre']}}</td>--}}
+{{--        <td>{{$equipo->marca['nombre']}}</td>--}}
+{{--        <td>{{$equipo->modelo}}</td>--}}
+{{--        <td>{{$equipo->tipo_dispositivo}}</td>--}}
+{{--        <td>{{$equipo->tienda['nombre']}}</td>--}}
+{{--        <td>{{$equipo->proveedor['nombre']}}</td>--}}
+{{--        <td>{{$equipo->precio}}</td>--}}
+{{--        <td>{{$equipo->fecha_alta}}</td>--}}
+{{--        <td>{{$equipo->responsable}}</td>--}}
+{{--    </tr>--}}
+{{--    @endforeach--}}
+{{--    </tbody>--}}
+{{--</table>--}}
 </body>
 </html>
