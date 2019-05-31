@@ -135,8 +135,8 @@
                         </div>
                         <div class="col">
                             <div class="form-group" style="color: #000000">
-                                <label for="ubi">Proveedor:</label>
-                                <select class="form-control" id="" name="proveedor">
+                                <label for="">Proveedor:</label>
+                                <select class="form-control" id="proveedor" name="proveedor">
                                     @foreach($proveedores as $proveedor)
                                         <option value="{{$proveedor->id}}">{{$proveedor->nombre}}</option>
                                     @endforeach
@@ -145,8 +145,8 @@
                         </div>
                         <div class="col">
                             <div class="form-group" style="color: #000000">
-                                <label for="ubi">Tienda:</label>
-                                <select class="form-control" id="departamento" name="tienda">
+                                <label for="">Tienda:</label>
+                                <select class="form-control" name="tienda">
                                     @foreach($tiendas as $tienda)
                                         <option value="{{$tienda->id}}">{{$tienda->nombre}}</option>
                                     @endforeach
@@ -232,43 +232,121 @@
     </div>
 
                       <!-- Modal Editar-->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        {{csrf_field()}}
-                        <h5 class="modal-title" id="exampleModalCenterTitle">Actualizar equipo</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+<div class="modal fade bd-example-modal-lg" id="exampleModalCenter" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                   <h5 class="modal-title" id="exampleModalCenterTitle">Modificar equipo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <p class="statusMsg"></p>
+                            {{csrf_field()}}
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group" style="color: #000000">
+                                <label for="num">Numero de serie:</label>
+                                <input type="text" class="form-control" id="noserie" name="noserie" >
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="tipo">Tipo de dispositivo</label>
+                                <select class="form-control" id="tipo" name="tipo">
+                                    @foreach($tipos as $tipo)
+                                        <option value="{{$tipo->id}}">{{$tipo->nombre}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group" style="color: #000000">
+                                <label for="mar">Marca:</label>
+                                <select class="form-control" id="marca" name="marca">
+                                    @foreach($marcas as $marca)
+                                        <option value="{{$marca->id}}">{{$marca->nombre}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col">
-                                <label for="noserie">N° Serie</label> <input id="noserie" class="" type="text">
-                            </div>
-                            <div class="col">
-                                <label for="">Tipo Disp.</label> <input id="" class="tipo" type="text">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="">Marca</label> <input id="" class="marca" type="text">
-                            </div>
-                            <div class="col">
-                                <label for="">Departamento</label> <input id="ubi" class="" type="text">
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group" style="color: #000000">
+                                <label>Departamento:</label>
+                                <select class="form-control" id="departamento" name="departamento">
+                                    @foreach($departamentos as $departamento)
+                                        <option value="{{$departamento->id}}">{{$departamento->nombre}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <label for="">Responsable</label> <input id="respo" class="" type="text">
+                        <div class="col">
+                            <div class="form-group" style="color: #000000">
+                                <label>Proveedor:</label>
+                                <select class="form-control" id="proveedor" name="proveedor">
+                                    @foreach($proveedores as $proveedor)
+                                        <option value="{{$proveedor->id}}">{{$proveedor->nombre}}</option>
+                                    @endforeach
+                                </select>
                             </div>
-                            <div class="col">
-                                <label for="">IP</label><br> <input id="ip" class="" type="text">
+                        </div>
+                        <div class="col">
+                            <div class="form-group" style="color: #000000">
+                                <label for="">Tienda:</label>
+                                <select class="form-control" id="tienda" name="tienda">
+                                    @foreach($tiendas as $tienda)
+                                        <option value="{{$tienda->id}}">{{$tienda->nombre}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group" style="color: #000000">
+                                <label for="res">Responsable:</label>
+                                <input type="text" class="form-control" id="responsable" name="responsable" placeholder="" value="{{old('responsable')}}">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group" style="color: #000000">
+                                <label for="ip">IP:</label>
+                                <input type="text" class="form-control" id="ip" name="ip" placeholder="" value="{{old('ip')}}">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="modelo">Modelo:</label>
+                                <input type="text" class="form-control" id="modelo" name="modelo" value="{{old('modelo')}}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="precio">Precio del equipo:</label>
+                                <input class="form-control" type="text" id="precio" name="precio" placeholder="$ 0.00"><span id="errmsg"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="descripcion">Descripción:</label>
+                                <textarea class="form-control descripcion" id="descripcion" rows="3"
+                                          name="descripcion" value="{{old('descripcion')}}" ></textarea>
+                            </div>
+                        </div>
+                    </div>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                         <button id="guardar" type="button" class="btn btn-primary">Guardar</button>
                     </div>
@@ -387,16 +465,26 @@
                 var id = $(this).parent().parent().find('.id').val();
                 var serie = $('#noserie');
                 var tipo = $('.tipo');
+                var departamento = $('.departamento');
+                var proveedor = $('.proveedor');
                 var marca = $('.marca');
-                var ubi = $('#ubi');
-                var respo = $('#respo');
+                var tienda = $('.tienda');  
+                var responsable = $('#responsable');
                 var ip = $('#ip');
+                var modelo = $('#modelo');
+                var descripcion = $('.descripcion');
+                var precio = $('#precio')
                 serie.val('');
                 tipo.val('');
                 marca.val('');
-                ubi.val('');
-                respo.val('');
+                responsable.val('');
                 ip.val('');
+                departamento.val('');
+                proveedor.val('');
+                tienda.val('');
+                modelo.val('');
+                descripcion.val('');
+                precio.val('');
                 $.ajax({
                     url: "/equipo_a_editar",
                     type: 'POST',
@@ -409,10 +497,15 @@
                         $('#exampleModalCenter').modal('show');
                         serie.val(response[0].num_serie);
                         tipo.val(response[0].tipo['nombre']);
+                        departamento.val(response[0].tipo);
+                        proveedor.val(response[0].proveedor);
+                        tienda.val(response[0].tienda['nombre']);
                         marca.val(response[0].marca['nombre']);
-                        ubi.val(response[0].departamento['nombre']);
-                        respo.val(response[0].responsable);
+                        responsable.val(response[0].responsable);
                         ip.val(response[0].ip);
+                        modelo.val(response[0].modelo);
+                        descripcion.val(response[0].descripcion);
+                        precio.val(response[0].precio);
                     }
                 });
 
@@ -420,15 +513,20 @@
                 $("#guardar").click(function () {
                     var token = $("input[name='_token']").val();
                     var serie = $('#noserie').val();
-                    var tipo = $('#tipo').val();
-                    var marca = $('#marca').val();
-                    var ubi = $('#ubi').val();
-                    var respo = $('#respo').val();
+                    var tipo = $('select[id=tipo]').val();
+                    var departamento = $('select[id=departamento]').val();
+                    var marca = $('select[id=marca]').val();
+                    var proveedor = $('select[id=proveedor]').val();
+                    var tienda = $('select[id=tienda]').val();
+                    var responsable = $('#responsable').val();
                     var ip = $('#ip').val();
+                    var modelo = $('#modelo').val();
+                    var descripcion = $('.descripcion').val();
                     var tabla = $('#tabla');
                     var tabla2 = "";
                     var load = $('#guardar');
                     load.html('Actualizando '+' <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+                  console.log(id,serie,tipo,departamento,marca,proveedor,tienda, responsable,ip,modelo,descripcion);
                     $.ajax({
                         url: "/actualizarequipo",
                         type: 'POST',
@@ -437,12 +535,18 @@
                             id: id,
                             serie: serie,
                             tipo: tipo,
+                            departamento: departamento,
                             marca: marca,
-                            ubi: ubi,
-                            respo: respo,
+                            proveedor: proveedor,
+                            tienda: tienda, 
+                            responsable: responsable, 
                             ip: ip,
+                            modelo: modelo,
+                            descripcion, descripcion,
                             _token: token
                         },
+                       
+
                         success: function (response) {
                             $('#exampleModalCenter').modal('hide');
                             // $.each(response, function(i,v){
@@ -486,11 +590,12 @@
                 });
             });
         
-          
+            });
+        
 
 
 
-        });
+        
     </script>
 
 

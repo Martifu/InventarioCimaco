@@ -70,12 +70,19 @@ class EquiposController extends Controller
         $fecha = Carbon::now('America/Mexico_City');
         $fecha_actualizacio = $fecha->format('d-m-Y H:i:s');
         $equipo = Equipos::where('id', $request->id)->update(['num_serie' => $request->serie,
-            'tipo_dispositivo' => $request->tipo,
-            'marca' => $request->marca,
-            'ubicacion' => $request->ubi,
-            'responsable' => $request->respo,
+            'id_tipo' => $request->tipo,
+            'id_marca' => $request->marca,
+            'id_departamento' => $request->departamento,
+            'responsable' => $request->responsable,
+            'id_tienda'=> $request->tienda,
+            'id_proveedor'=> $request->proveedor,
             'ip' => $request->ip,
+            'modelo' => $request->modelo,
+            'descripcion'=> $request->descripcion,
+            'precio' => $request->precio,
             'fecha_modificacion'=>$fecha_actualizacio]);
+
+         $equipos = Tipos::all();
 
         $equipos = Equipos::all();
 
