@@ -324,7 +324,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="modelo">Modelo:</label>
-                                <input type="text" class="form-control" id="modelo" name="modelo" value="{{old('modelo')}}">
+                                <input type="text" class="form-control modelo" id="" name="modelo" value="{{old('modelo')}}">
                             </div>
                         </div>
                     </div>
@@ -471,9 +471,9 @@
                 var tienda = $('.tienda');  
                 var responsable = $('#responsable');
                 var ip = $('#ip');
-                var modelo = $('#modelo');
+                var modelo = $('.modelo');
                 var descripcion = $('.descripcion');
-                var precio = $('#precio')
+                var precio = $('#precio');
                 serie.val('');
                 tipo.val('');
                 marca.val('');
@@ -494,6 +494,7 @@
                         _token: token
                     },
                     success: function (response) {
+                        console.log(response);
                         $('#exampleModalCenter').modal('show');
                         serie.val(response[0].num_serie);
                         tipo.val(response[0].tipo['nombre']);
