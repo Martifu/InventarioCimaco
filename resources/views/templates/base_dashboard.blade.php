@@ -566,7 +566,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">Agregar tipo</a>
+                                    <a href="/tipos">Tipos de dispositivo</a>
                                 </li>
                                 <li>
                                     <a href="#">Agregar departamento</a>

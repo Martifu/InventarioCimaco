@@ -54,3 +54,12 @@ Route::get('buscarmarca', 'EquiposController@buscarmarca');
 //Editar Marca
 Route::post('/marca_a_editar', 'EquiposController@marca_a_editar');
 Route::post('/actualizarmarca', 'EquiposController@actualizarmarca');
+
+
+//Tipos de dispositivo
+Route::get('/tipos', 'TipoDispositivoController@viewtipos');
+Route::post('/agregartipo','TipoDispositivoController@agregartipo');
+Route::post('/tipoaeliminar','TipoDispositivoController@tipoaeliminar');
+Route::post('/eliminartipo','TipoDispositivoController@eliminartipo');
+Route::post('/tipo_a_editar','TipoDispositivoController@tipoaeditar');
+Route::post('/actualizartipo','TipoDispositivoController@actualizartipo');

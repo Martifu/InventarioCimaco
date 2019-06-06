@@ -36,7 +36,6 @@ class EquiposController extends Controller
         $marcas = Marcas::all();
         $tiendas = Tiendas::all();
         $proveedores = Proveedores::all();
-
         return view('buscar',compact('equipos','titulo','tipos','departamentos','marcas',
             'tiendas','proveedores'));
     }
