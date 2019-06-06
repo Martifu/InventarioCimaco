@@ -45,3 +45,12 @@ Route::post('/reporte_activofijo','EquiposController@activofijo');
 
 Route::get('/todo','EquiposController@todo');
 
+
+//Agregar Marca
+Route::get('/buscarmarca', 'EquiposController@agregarM');
+Route::post('/buscarmarca','EquiposController@agregarMarca');
+Route::get('buscarmarca', 'EquiposController@buscarmarca');
+
+//Editar Marca
+Route::post('/marca_a_editar', 'EquiposController@marca_a_editar');
+Route::post('/actualizarmarca', 'EquiposController@actualizarmarca');

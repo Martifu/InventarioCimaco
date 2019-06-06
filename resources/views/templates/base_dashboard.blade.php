@@ -556,20 +556,26 @@
                         <a href="#">
                             <i class="fa fa-tachometer-alt"></i>
                             <span>Dashboard</span>
-                            <span class="badge badge-pill badge-warning">New</span>
+                            
                         </a>
                         <div class="sidebar-submenu">
                             <ul>
                                 <li>
-                                    <a href="#">Dashboard 1
-                                        <span class="badge badge-pill badge-success">Pro</span>
+                                    <a href="/marca">Agregar marca
+                                       
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">Dashboard 2</a>
+                                    <a href="#">Agregar tipo</a>
                                 </li>
                                 <li>
-                                    <a href="#">Dashboard 3</a>
+                                    <a href="#">Agregar departamento</a>
+                                </li>
+                                 <li>
+                                    <a href="#">Agregar proveedor</a>
+                                </li>
+                                 <li>
+                                    <a href="#">Agregar Tienda</a>
                                 </li>
                             </ul>
                         </div>
