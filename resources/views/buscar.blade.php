@@ -39,7 +39,7 @@
         <div class="row mb-1">
             <div class="col offset-5"></div>
             <div class="col">
-                <button class="btn btn-outline-primary btn-activofijo">Generar reporte</button>
+                <button class="btn btn-outline-primary " data-toggle="modal" data-target="#exampleModalReporte">Generar reporte</button>
             </div>
             <div class="col">
                 <button style="font-weight: bold; color: white; background-color: #45bc5d;" class="btn btn-outline-"data-toggle="modal" data-target="#modalForm">Agregar Equipo <i class="fas fa-plus-circle" style="color: white;"></i></button>
@@ -75,8 +75,35 @@
         </tr>
         @endforeach
     </table>
-
-
+{{--        Modal titulo reporte--}}
+                      <div class="modal fade" id="exampleModalReporte" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      {{csrf_field()}}
+                                      <h5 class="modal-title" id="exampleModalCenterTitle">Agregue título o nombre al reporte</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                      </button>
+                                  </div>
+                                  <div class="modal-body">
+                                      <div class="row">
+                                          <div class="col">
+                                              <div class="form-group">
+                                                  <label for="">Título:</label>
+                                                      <input type="text" class="form-control titulo">
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                      <button  type="button" id="confirmarReporte" class="btn btn-primary btn-activofijo">
+                                          Confirmar</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
 
 <!-- MODAL AGREGAR-->
 <div class="modal fade bd-example-modal-lg" id="modalForm" role="dialog">
@@ -97,13 +124,13 @@
                         <div class="col">
                             <div class="form-group" style="color: #000000">
                                 <label for="num">Numero de serie:</label>
-                                <input type="text" class="form-control" id="num" name="serie" placeholder="Ingrese número de serie" value="{{old('num')}}">
+                                <input type="text" class="form-control" id="" name="serie" placeholder="Ingrese número de serie" value="{{old('num')}}">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="">Tipo de dispositivo</label>
-                                <select class="form-control" id="tipo" name="tipo">
+                                <select class="form-control" id="" name="tipo">
                                     @foreach($tipos as $tipo)
                                         <option value="{{$tipo->id}}">{{$tipo->nombre}}</option>
                                     @endforeach
@@ -113,7 +140,7 @@
                         <div class="col">
                             <div class="form-group" style="color: #000000">
                                 <label for="mar">Marca:</label>
-                                <select class="form-control" id="marca" name="marca">
+                                <select class="form-control" id="" name="marca">
                                     @foreach($marcas as $marca)
                                         <option value="{{$marca->id}}">{{$marca->nombre}}</option>
                                     @endforeach
@@ -136,7 +163,7 @@
                         <div class="col">
                             <div class="form-group" style="color: #000000">
                                 <label for="">Proveedor:</label>
-                                <select class="form-control" id="proveedor" name="proveedor">
+                                <select class="form-control" id="" name="proveedor">
                                     @foreach($proveedores as $proveedor)
                                         <option value="{{$proveedor->id}}">{{$proveedor->nombre}}</option>
                                     @endforeach
@@ -159,19 +186,19 @@
                         <div class="col">
                             <div class="form-group" style="color: #000000">
                                 <label for="res">Responsable:</label>
-                                <input type="text" class="form-control" id="res" name="responsable" placeholder="Ingrese responsable del equipo" value="{{old('res')}}">
+                                <input type="text" class="form-control" id="" name="responsable" placeholder="Ingrese responsable del equipo" value="{{old('res')}}">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group" style="color: #000000">
                                 <label for="ip">IP:</label>
-                                <input type="text" class="form-control" id="ipe" name="ip" placeholder="Ingrese IP del equipo" value="{{old('ip')}}">
+                                <input type="text" class="form-control" id="" name="ip" placeholder="Ingrese IP del equipo" value="{{old('ip')}}">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="ip">Modelo:</label>
-                                <input type="text" id="modelo" class="form-control" name="modelo" placeholder="Ingrese modelo del equipo" value="{{old(('modelo'))}}">
+                                <input type="text" id="" class="form-control" name="modelo" placeholder="Ingrese modelo del equipo" value="{{old(('modelo'))}}">
                             </div>
                         </div>
                     </div>
@@ -189,7 +216,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="descripcion">Descripción:</label>
-                                <textarea class="form-control" id="descripcion" rows="3"
+                                <textarea class="form-control" id="" rows="3"
                                           name="descripcion" placeholder="Ingrese descripción de uso"></textarea>
                             </div>
                         </div>
@@ -231,6 +258,8 @@
         </div>
     </div>
 
+
+
                       <!-- Modal Editar-->
 <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" role="dialog">
     <div class="modal-dialog modal-lg">
@@ -250,13 +279,13 @@
                         <div class="col">
                             <div class="form-group" style="color: #000000">
                                 <label for="num">Numero de serie:</label>
-                                <input type="text" class="form-control" id="noserie" name="noserie" >
+                                <input type="text" class="form-control noserie" id="" name="noserie" >
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="tipo">Tipo de dispositivo</label>
-                                <select class="form-control" id="tipo" name="tipo">
+                                <select class="form-control " id="selectTipo" name="tipo">
                                     @foreach($tipos as $tipo)
                                         <option value="{{$tipo->id}}">{{$tipo->nombre}}</option>
                                     @endforeach
@@ -266,7 +295,7 @@
                         <div class="col">
                             <div class="form-group" style="color: #000000">
                                 <label for="mar">Marca:</label>
-                                <select class="form-control" id="marca" name="marca">
+                                <select class="form-control " id="selectmarca" name="marca">
                                     @foreach($marcas as $marca)
                                         <option value="{{$marca->id}}">{{$marca->nombre}}</option>
                                     @endforeach
@@ -279,7 +308,7 @@
                         <div class="col">
                             <div class="form-group" style="color: #000000">
                                 <label>Departamento:</label>
-                                <select class="form-control" id="departamento" name="departamento">
+                                <select class="form-control " id="selectdepartamento" name="departamento">
                                     @foreach($departamentos as $departamento)
                                         <option value="{{$departamento->id}}">{{$departamento->nombre}}</option>
                                     @endforeach
@@ -289,7 +318,7 @@
                         <div class="col">
                             <div class="form-group" style="color: #000000">
                                 <label>Proveedor:</label>
-                                <select class="form-control" id="proveedor" name="proveedor">
+                                <select class="form-control " id="selectproveedor" name="proveedor">
                                     @foreach($proveedores as $proveedor)
                                         <option value="{{$proveedor->id}}">{{$proveedor->nombre}}</option>
                                     @endforeach
@@ -299,7 +328,7 @@
                         <div class="col">
                             <div class="form-group" style="color: #000000">
                                 <label for="">Tienda:</label>
-                                <select class="form-control" id="tienda" name="tienda">
+                                <select class="form-control " id="selecttienda" name="tienda">
                                     @foreach($tiendas as $tienda)
                                         <option value="{{$tienda->id}}">{{$tienda->nombre}}</option>
                                     @endforeach
@@ -312,13 +341,13 @@
                         <div class="col">
                             <div class="form-group" style="color: #000000">
                                 <label for="res">Responsable:</label>
-                                <input type="text" class="form-control" id="responsable" name="responsable" placeholder="" value="{{old('responsable')}}">
+                                <input type="text" class="form-control responsable" id="" name="responsable" placeholder="" value="{{old('responsable')}}">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group" style="color: #000000">
                                 <label for="ip">IP:</label>
-                                <input type="text" class="form-control" id="ip" name="ip" placeholder="" value="{{old('ip')}}">
+                                <input type="text" class="form-control " id="ip" name="ip" placeholder="" value="{{old('ip')}}">
                             </div>
                         </div>
                         <div class="col">
@@ -333,7 +362,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="precio">Precio del equipo:</label>
-                                <input class="form-control" type="text" id="precio" name="precio" placeholder="$ 0.00" value="{{old('precio')}}"><span id="errmsg"></span>
+                                <input class="form-control precio" type="text" id="" name="precio" placeholder="$ 0.00" value="{{old('precio')}}"><span id="errmsg"></span>
                             </div>
                         </div>
                     </div>
@@ -342,7 +371,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="descripcion">Descripción:</label>
-                                <textarea class="form-control descripcion" id="descripcion" rows="3"
+                                <textarea class="form-control descripcion" id="" rows="3"
                                           name="descripcion" value="{{old('descripcion')}}" ></textarea>
                             </div>
                         </div>
@@ -463,17 +492,17 @@
             $('.btn-editar').on("click", function () {
                 var token = $('input[name=_token]').val();
                 var id = $(this).parent().parent().find('.id').val();
-                var serie = $('#noserie');
-                var tipo = $('.tipo');
-                var departamento = $('.departamento');
-                var proveedor = $('.proveedor');
-                var marca = $('.marca');
-                var tienda = $('.tienda');  
-                var responsable = $('#responsable');
+                var serie = $('.noserie');
+                var tipo = $('#tipo');
+                var departamento = $('#departamento');
+                var proveedor = $('#proveedor');
+                var marca = $('#marca');
+                var tienda = $('#tienda');
+                var responsable = $('.responsable');
                 var ip = $('#ip');
                 var modelo = $('.modelo');
                 var descripcion = $('.descripcion');
-                var precio = $('#precio');
+                var precio = $('.precio');
                 serie.val('');
                 tipo.val('');
                 marca.val('');
@@ -494,13 +523,14 @@
                         _token: token
                     },
                     success: function (response) {
+                        console.log(response);
                         $('#exampleModalCenter').modal('show');
                         serie.val(response[0].num_serie);
-                        tipo.val(response[0].tipo['nombre']);
-                        departamento.val(response[0].tipo);
-                        proveedor.val(response[0].proveedor);
-                        tienda.val(response[0].tienda['nombre']);
-                        marca.val(response[0].marca['nombre']);
+                        $('#selectTipo').val(response[0].tipo['id']);
+                        $('#selectdepartamento').val(response[0].departamento['id']);
+                        $('#selectproveedor').val(response[0].proveedor['id']);
+                        $('#selecttienda').val(response[0].tienda['id']);
+                        $('#selectmarca').val(response[0].marca['id']);
                         responsable.val(response[0].responsable);
                         ip.val(response[0].ip);
                         modelo.val(response[0].modelo);
@@ -512,22 +542,20 @@
                 //Guarda equipo editado
                 $("#guardar").click(function () {
                     var token = $("input[name='_token']").val();
-                    var serie = $('#noserie').val();
+                    var serie = $('.noserie').val();
                     var tipo = $('select[id=tipo]').val();
                     var departamento = $('select[id=departamento]').val();
                     var marca = $('select[id=marca]').val();
                     var proveedor = $('select[id=proveedor]').val();
                     var tienda = $('select[id=tienda]').val();
-                    var responsable = $('#responsable').val();
+                    var responsable = $('.responsable').val();
                     var ip = $('#ip').val();
-                    var modelo = $('#modelo').val();
+                    var modelo = $('.modelo').val();
                     var descripcion = $('.descripcion').val();
-                    var precio = $('#precio').val();
-                    var tabla = $('#tabla');
-                    var tabla2 = "";
+                    var precio = $('.precio').val();
                     var load = $('#guardar');
                     load.html('Actualizando '+' <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
-                  console.log(id,serie,tipo,departamento,marca,proveedor,tienda, responsable,ip,modelo,descripcion, precio);
+                  console.log(tipo,departamento,marca,proveedor,tienda, ip);
                     $.ajax({
                         url: "/actualizarequipo",
                         type: 'POST',
@@ -539,30 +567,18 @@
                             departamento: departamento,
                             marca: marca,
                             proveedor: proveedor,
-                            tienda: tienda, 
-                            responsable: responsable, 
+                            tienda: tienda,
+                            responsable: responsable,
                             ip: ip,
                             modelo: modelo,
                             descripcion, descripcion,
                             precio, precio,
                             _token: token
                         },
-                       
+
 
                         success: function (response) {
                             $('#exampleModalCenter').modal('hide');
-                            // $.each(response, function(i,v){
-                            //     tabla2+=("<tr>");
-                            //     tabla2+=("<td>"+v.num_serie+"</td>");
-                            //     tabla2+=("<td>"+v.tipo_dispositivo+"</td>");
-                            //     tabla2+=("<td>"+v.marca+"</td>");
-                            //     tabla2+=("<td>"+v.ubicacion+"</td>");
-                            //     tabla2+=("<td>"+v.responsable+"</td>");
-                            //     tabla2+=("<td>"+v.ip+"</td>");
-                            //     tabla2+=("<td id='editar'>" + "<button id='editar' style='background-color: #16c7ff; border: 0px;' class='btn btn-primary btn-editar' href='#exampleModalCenter'><i class='far fa-edit'></i></button>" + "<button id='eliminar' style='background-color: red; border: 0px;' class='btn btn-warning'><i class='far fa-trash-alt' style='color: white;'></i></button>"+"</td>");
-                            //     tabla2+=("</tr>");
-                            // });
-                            // tabla.html(tabla2);
                             location.href='/buscar';
                         }
                     });
@@ -575,7 +591,11 @@
                 $("input[name='ids']").each(function() {
                     values.push($(this).val());
                 });
+                var titulo = $('.titulo').val();
+                values.push(titulo);
                 console.log(values);
+                var load = $('#confirmarReporte');
+                load.html('Generando '+' <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
                 $.ajax({
                     url: "/reporte_activofijo",
                     type: 'POST',
@@ -588,6 +608,7 @@
                         var pdf= window.open("");
                         pdf.document.write("<iframe width='100%' height='100%'"+
                             " src='data:application/pdf;base64, " + encodeURI(response)+"'></iframe>");
+                        location.href='/buscar';
                     }
                 });
             });

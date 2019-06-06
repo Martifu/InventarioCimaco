@@ -27,12 +27,12 @@
     .contenedor{
         background-color:#CCC;
         width:2900px;
-        height:100px;
+        height:50px;
         display:flex;
         justify-content: space-between;
     }
     .contenido{
-        height:80px;
+        height:35px;
         width:10%;
         float:left;
         margin: 10px;
@@ -40,14 +40,14 @@
 </style>
 <header style="margin: auto; margin-left: 280px">Compañía Comercial Cimaco S.A. de C.V.</header>
 <div class="contenedor">
-    <div class="contenido">30/Mayo/2019</div>
+    <div class="contenido">{{$fecha}}</div>
     <div class="contenido">Sistema de Activo Fijo
         <br><br> Reporte de Consultas</div>
-    <div class="contenido">15:50:00</div>
+    <div class="contenido">{{$hora}}</div>
 </div>
+<h2>{{$titulo}}</h2>
 
 <TABLE border="1" frame="border" rules="groups">
-    <CAPTION>Ejemplo de grupos de columnas y líneas</CAPTION>
     <COLGROUP align="center">
     <COLGROUP align="left">
     <COLGROUP align="center" span="2">

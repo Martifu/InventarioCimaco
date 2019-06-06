@@ -102,7 +102,10 @@ class EquiposController extends Controller
             $equipos[$i] = $equipo[0];
         }
         $nombre = end($ids);
-        $data = ['equipos' => $equipos];
+        $fechaHoy = Carbon::now('America/Mexico_City');
+        $fecha=$fechaHoy->format('d-m-Y');
+        $hora = $fechaHoy->format('h:i:s A');
+        $data = ['equipos' => $equipos,'titulo'=>$nombre,'fecha'=> $fecha,'hora'=>$hora];
         $pdf = PDF::loadView('reportes.activofijo', $data);
         return base64_encode($pdf->stream('invoice.pdf'));
     }
