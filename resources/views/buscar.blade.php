@@ -71,6 +71,7 @@
             <td>
                 <button id="editar" style="background-color: #16c7ff; border: 0px;" class="btn btn-primary btn-editar" href="#exampleModalCenter"><i class="far fa-edit"></i></button>
                 <button id="eliminar" style=" background-color: red; border: 0px;" class="btn btn-warning btn-eliminar"  href="#exampleModalEliminar"><i class="far fa-trash-alt" style="color: white;"></i></button>
+                <button type="button" class="btn btn-primary btn-informacion" ><i class="fas fa-eye"></i></button>
             </td>
         </tr>
         @endforeach
@@ -382,6 +383,85 @@
                 </div>
             </div>
         </div>
+
+                      <div class="modal fade bd-example-modal-largo" tabindex="-1" id="modalInfo" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-lg">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      {{csrf_field()}}
+                                      <h5 class="modal-title" id="exampleModalCenterTitle">Informacion completa</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                      </button>
+                                  </div>
+                                  <div class="modal-body">
+                                      <div class="row">
+                                          <div class="col">
+                                              <label class="font-weight-bold" for="">Numero de Serie:</label><br>
+                                              <label for="" class="infoserie">029910923801928</label>
+                                          </div>
+                                          <div class="col">
+                                              <label class="font-weight-bold" for="">Tipo de dipositivo:</label><br>
+                                              <label for="" class="infodipositivo"></label>
+                                          </div>
+                                          <div class="col">
+                                              <label class="font-weight-bold" for="">Marca:</label><br>
+                                              <label for="" class="infomarca"></label>
+                                          </div>
+                                          <div class="col">
+                                              <label class="font-weight-bold" for="">Modelo:</label><br>
+                                              <label for="" class="infomodelo"></label>
+                                          </div>
+                                      </div>
+
+                                      <div class="row">
+                                          <div class="col">
+                                              <label class="font-weight-bold" for="">Tienda:</label><br>
+                                              <label  for="" class="infotienda"></label>
+                                          </div>
+                                          <div class="col">
+                                              <label class="font-weight-bold" for="">Departamento:</label><br>
+                                              <label for="" class="infodepa"></label>
+                                          </div>
+                                          <div class="col">
+                                              <label class="font-weight-bold" for="">Responsable:</label><br>
+                                              <label for="" class="inforespo"></label>
+                                          </div>
+                                          <div class="col">
+                                              <label class="font-weight-bold" for="">Proveedor:</label><br>
+                                              <label for="" class="infoprovee"></label>
+                                          </div>
+                                      </div>
+
+                                      <div class="row">
+                                          <div class="col">
+                                              <label class="font-weight-bold" for="">IP:</label><br>
+                                              <label for="" class="infoip"></label>
+                                          </div>
+                                          <div class="col">
+                                              <label class="font-weight-bold" for="">Precio:</label><br>
+                                              <label for="" class="infoprecio"></label>
+                                          </div>
+                                          <div class="col">
+                                              <label class="font-weight-bold" for="">Fecha de alta:</label><br>
+                                              <label for="" class="infoalta"></label>
+                                          </div>
+                                          <div class="col">
+                                              <label class="font-weight-bold" for="">Fecha de modificacion:</label><br>
+                                              <label for="" class="infomodif"></label>
+                                          </div>
+                                      </div>
+
+                                      <div class="row">
+                                          <div class="col">
+                                              <label class="font-weight-bold" for="">Descripcion:</label><br>
+                                              <label for="" class="infodescr"></label>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
    
 @stop
 
@@ -401,6 +481,64 @@
                     $("#errmsg").html("Solo dígitos numéricos").show().fadeOut("slow");
                     return false;
                 }
+            });
+
+            //Informacion completa
+            $('.btn-informacion').on("click",function () {
+                var token = $('input[name=_token]').val();
+                var id = $(this).parent().parent().find('.id').val();
+                var serie = $('.infoserie');
+                var tipo = $('.infodipositivo');
+                var departamento = $('.infodepa');
+                var proveedor = $('.infoprovee');
+                var marca = $('.infomarca');
+                var tienda = $('.infotienda');
+                var responsable = $('.inforespo');
+                var ip = $('.infoip');
+                var modelo = $('.infomodelo');
+                var descripcion = $('.infodescr');
+                var precio = $('.infoprecio');
+                var fecha_alta = $('.infoalta');
+                var fecha_modif = $('.infomodif');
+                fecha_alta.html('');
+                fecha_modif.html('');
+                serie.html('');
+                tipo.html('');
+                marca.html('');
+                responsable.html('');
+                ip.html('');
+                departamento.html('');
+                proveedor.html('');
+                tienda.html('');
+                modelo.html('');
+                descripcion.html('');
+                precio.html('');
+                $.ajax({
+                    url: "/info_equipo",
+                    type: 'POST',
+                    datatype: 'json',
+                    data: {
+                        id: id,
+                        _token: token
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        $('#modalInfo').modal('show');
+                        serie.html(response[0].num_serie);
+                        tipo.html(response[0].tipo['nombre']);
+                        departamento.html(response[0].departamento['nombre']);
+                        proveedor.html(response[0].proveedor['nombre']);
+                        tienda.html(response[0].tienda['nombre']);
+                        marca.html(response[0].marca['nombre']);
+                        responsable.html(response[0].responsable);
+                        ip.html(response[0].ip);
+                        modelo.html(response[0].modelo);
+                        descripcion.html(response[0].descripcion);
+                        precio.html('$'+response[0].precio);
+                        fecha_alta.html(response[0].fecha_alta);
+                        fecha_modif.html(response[0].fecha_modificacion);
+                    }
+                });
             });
             //Agregar equipo
             $('.btn-agregar').on("click",function () {
@@ -543,11 +681,11 @@
                 $("#guardar").click(function () {
                     var token = $("input[name='_token']").val();
                     var serie = $('.noserie').val();
-                    var tipo = $('select[id=tipo]').val();
-                    var departamento = $('select[id=departamento]').val();
-                    var marca = $('select[id=marca]').val();
-                    var proveedor = $('select[id=proveedor]').val();
-                    var tienda = $('select[id=tienda]').val();
+                    var tipo = $('select[name=tipo]').val();
+                    var departamento = $('select[name=departamento]').val();
+                    var marca = $('select[name=marca]').val();
+                    var proveedor = $('select[name=proveedor]').val();
+                    var tienda = $('select[name=tienda]').val();
                     var responsable = $('.responsable').val();
                     var ip = $('#ip').val();
                     var modelo = $('.modelo').val();
@@ -575,7 +713,6 @@
                             precio, precio,
                             _token: token
                         },
-
 
                         success: function (response) {
                             $('#exampleModalCenter').modal('hide');

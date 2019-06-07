@@ -544,24 +544,24 @@
                     </li>
                     <li>
                         <a href="/buscar">
-                            <i class="fa fa-book"></i>
+                            <i class="fas fa-tasks"></i>
                             <span>Buscar</span>
                         </a>
                     </li>
 
                     <li class="header-menu">
-                        <span>Reportes</span>
+                        <span>Control</span>
                     </li>
                     <li class="sidebar-dropdown">
                         <a href="#">
-                            <i class="fa fa-tachometer-alt"></i>
-                            <span>Dashboard</span>
+                            <i class="fa fa-book"></i>
+                            <span>Acciones</span>
                             
                         </a>
                         <div class="sidebar-submenu">
                             <ul>
                                 <li>
-                                    <a href="/marca">Agregar marca
+                                    <a href="/marca">Marcas
                                        
                                     </a>
                                 </li>
@@ -569,28 +569,16 @@
                                     <a href="/tipos">Tipos de dispositivo</a>
                                 </li>
                                 <li>
-                                    <a href="#">Agregar departamento</a>
+                                    <a href="/departamentos">Departamentos</a>
                                 </li>
                                  <li>
-                                    <a href="#">Agregar proveedor</a>
+                                    <a href="/proveedores">Proveedores</a>
                                 </li>
                                  <li>
-                                    <a href="#">Agregar Tienda</a>
+                                    <a href="/tiendas">Tiendas</a>
                                 </li>
                             </ul>
                         </div>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-book"></i>
-                            <span>Documentation</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-calendar"></i>
-                            <span>Calendar</span>
-                        </a>
                     </li>
                     <li>
                         <a href="#">

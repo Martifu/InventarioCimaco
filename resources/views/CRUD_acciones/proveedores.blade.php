@@ -1,7 +1,7 @@
 @extends('templates.base_dashboard')
 
 @section('cssextra')
-    
+
 @stop
 
 @section('content')
@@ -18,39 +18,39 @@
             </div>
         @endif
     </div>
-    @if (Session::has('tipo'))
+    @if (Session::has('proveedor'))
         <script>
             var hulla = new hullabaloo();
-            hulla.send("Tipo de dispositivo agregado", "success");
+            hulla.send("Proveedor agregado", "success");
         </script>
     @endif
     <div class="header">
         <div class="row">
             <div class="col">
-                <h2>Tipos de dispositivos</h2>
+                <h2>Proveedores</h2>
             </div>
         </div>
         <div class="row mb-1">
             <div class="col offset-5"></div>
             <div class="col">
-                <button style="font-weight: bold; color: white; background-color: #45bc5d;" class="btn btn-outline-"data-toggle="modal" data-target="#modalForm">Agregar Equipo <i class="fas fa-plus-circle" style="color: white;"></i></button>
+                <button style="font-weight: bold; color: white; background-color: #45bc5d;" class="btn btn-outline-"data-toggle="modal" data-target="#modalForm">Agregar Proveedor <i class="fas fa-plus-circle" style="color: white;"></i></button>
             </div>
         </div>
     </div>
     <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
         <tr>
-            <th>Tipo de Dispositivo</th>
+            <th>Proveedor</th>
             <th>Fecha de Creación</th>
             <th>Acciones</th>
         </tr>
         </thead>
         <tbody id="tabla">
-        @foreach($dispositivos as $dispositivo)
+        @foreach($proveedores as $proveedor)
             <tr>
-                <input type="hidden" class="id" value="{{$dispositivo->id}}" name="ids">
-                <td>{{$dispositivo->nombre}}</td>
-                <td>{{$dispositivo->created_at}}</td>
+                <input type="hidden" class="id" value="{{$proveedor->id}}" name="ids">
+                <td>{{$proveedor->nombre}}</td>
+                <td>{{$proveedor->created_at}}</td>
                 <td>
                     <button id="editar" style="background-color: #16c7ff; border: 0px;" class="btn btn-primary btn-editar" href="#exampleModalCenter"><i class="far fa-edit"></i></button>
                     <button id="eliminar" style=" background-color: red; border: 0px;" class="btn btn-warning btn-eliminar"  href="#exampleModalEliminar"><i class="far fa-trash-alt" style="color: white;"></i></button>
@@ -66,7 +66,7 @@
             <div class="modal-content">
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Agregar nuevo equipo</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Agregar nuevo proveedor</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -79,7 +79,7 @@
                         <div class="col">
                             <div class="form-group" style="color: #000000">
                                 <label for="num">Nombre:</label>
-                                <input type="text" class="form-control" id="" name="nombre" placeholder="Ingrese nombre del tipo de dispositivo" value="{{old('num')}}">
+                                <input type="text" class="form-control" id="" name="nombre" placeholder="Ingrese nombre del proveedor" value="{{old('num')}}">
                             </div>
                         </div>
                     </div>
@@ -93,13 +93,13 @@
         </div>
     </div>
 
-{{--    Modal eliminar--}}
+    {{--    Modal eliminar--}}
     <div class="modal fade" id="exampleModalEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     {{csrf_field()}}
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Eliminar Tipo de dispositivo</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Eliminar Proveedor</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -127,7 +127,7 @@
             <div class="modal-content">
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Modificar tipo de dispositivo</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Modificar Proveedor</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -139,7 +139,7 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group" style="color: #000000">
-                                <label for="num">Nombre de tipo de dispositivo:</label>
+                                <label for="num">Nombre de Proveedor:</label>
                                 <input type="text" class="form-control nombre" id="" name="nombre" >
                             </div>
                         </div>
@@ -175,7 +175,7 @@
                 var load = $('#agregar');
                 load.html('Agregando '+' <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
                 $.ajax({
-                    url: "/agregartipo",
+                    url: "/agregarproveedor",
                     type: 'POST',
                     datatype: 'json',
                     data: {
@@ -184,7 +184,7 @@
                     },
                     success: function (response) {
                         console.log(response);
-                        location.href = '/tipos';
+                        location.href = '/proveedores';
                     },
                     error: function( jqXHR, textStatus, errorThrown ){
                         console.log(jqXHR);
@@ -197,7 +197,7 @@
                 var id = $(this).parent().parent().find('.id').val();
                 console.log(id);
                 $.ajax({
-                    url: "/tipoaeliminar",
+                    url: "/proveedoraeliminar",
                     type: 'POST',
                     datatype: 'json',
                     data: {
@@ -218,7 +218,7 @@
                     var load = $('#eliminado');
                     load.html('Eliminando '+' <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
                     $.ajax({
-                        url: "/eliminartipo",
+                        url: "/eliminarproveedor",
                         type: 'POST',
                         datatype: 'json',
                         data: {
@@ -226,7 +226,7 @@
                             _token: token
                         },
                         success: function (response) {
-                            location.href = '/tipos';
+                            location.href = '/proveedores';
                         }
                     });
                 });
@@ -238,7 +238,7 @@
                 var nombre = $('.nombre');
                 nombre.val('');
                 $.ajax({
-                    url: "/tipo_a_editar",
+                    url: "/proveedor_a_editar",
                     type: 'POST',
                     datatype: 'json',
                     data: {
@@ -259,7 +259,7 @@
                     var load = $('#guardar');
                     load.html('Actualizando '+' <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
                     $.ajax({
-                        url: "/actualizartipo",
+                        url: "/actualizarproveedor",
                         type: 'POST',
                         datatype: 'json',
                         data: {
@@ -269,7 +269,7 @@
                         },
                         success: function (response) {
                             $('#exampleModalCenter').modal('hide');
-                            location.href='/tipo';
+                            location.href='/proveedores';
                         }
                     });
                 });
@@ -298,7 +298,7 @@
                         var pdf= window.open("");
                         pdf.document.write("<iframe width='100%' height='100%'"+
                             " src='data:application/pdf;base64, " + encodeURI(response)+"'></iframe>");
-                        location.href='/buscar';
+                        location.href='/proveedores';
                     }
                 });
             });

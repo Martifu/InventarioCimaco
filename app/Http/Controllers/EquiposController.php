@@ -59,7 +59,10 @@ class EquiposController extends Controller
        return \Redirect::back();
     }
 
-    
+    function info_equipo(Request $request){
+        $equipo = Equipos::with('departamento','marca','tipo','proveedor','tienda')->where('id',$request->id)->get();
+        return $equipo;
+    }
 
 
 
@@ -81,7 +84,6 @@ class EquiposController extends Controller
             'precio' => $request->precio,
             'fecha_modificacion'=>$fecha_actualizacio]);
 
-         $equipos = Tipos::all();
 
         $equipos = Equipos::all();
 
