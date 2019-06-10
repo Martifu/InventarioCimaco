@@ -561,7 +561,7 @@
                         <div class="sidebar-submenu">
                             <ul>
                                 <li>
-                                    <a href="/marca">Marcas
+                                    <a href="/marcas">Marcas
                                        
                                     </a>
                                 </li>
