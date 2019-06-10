@@ -13,6 +13,7 @@ use App\Marcas;
 use App\Proveedores;
 use App\Tiendas;
 use App\User;
+use Session;
 use Illuminate\Http\Request;
 
 class EquiposController extends Controller
@@ -30,6 +31,7 @@ class EquiposController extends Controller
 
     public function buscar_view()
     {
+
         $titulo = "Activo fijo";
         $equipos = Equipos::with('departamento','marca','tipo','proveedor','tienda')->get();
         $tipos = Tipos::all();
