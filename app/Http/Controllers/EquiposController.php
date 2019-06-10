@@ -164,48 +164,8 @@ class EquiposController extends Controller
     
      
 
-public function agregarM()
-    {
-        $title = 'Marca';
-        return view('marca');
-    }
-
-public function agregarMarca(Request $request){
-
-        
-        $marcas = new Marcas(); 
-        $marcas->nombre=$request->input('marca');
-        $marcas->save();
-               
-
-          \Session::flash('marcas',$marcas);
-            return \Redirect::back();
-}
-
-  public function buscarmarca()
-    {
-      $marcas = Marcas::all();
-      
-        return view('marca', compact('marcas'));
-    }
 
 
-    public function actualizarmarca(Request $request)
-    {
-
-       
-        $marca = Marcas::where('id', $request->id)->update(['nombre' => $request->marca]);
-
-     
-
-        return $marca;
-    }
-
-     public function marca_a_editar(Request $request)
-    {
-        $marca = Marcas::all();
-        return $marca;
-    }
 
 
 }
