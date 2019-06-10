@@ -567,7 +567,6 @@
                                 <ul>
                                     <li>
                                         <a href="/marcas">Marcas
-
                                         </a>
                                     </li>
                                     <li>
@@ -584,6 +583,12 @@
                                     </li>
                                 </ul>
                             </div>
+                        </li>
+                        <li>
+                            <a href="/usuarios">
+                                <i class="fas fa-users"></i>
+                                <span>Usuarios</span>
+                            </a>
                         </li>
                     @endif
                 </ul>
