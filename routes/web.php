@@ -47,17 +47,14 @@ Route::post('/reporte_activofijo','EquiposController@activofijo');
 
 
 //Agregar Marca
-Route::get('/buscarmarca', 'MarcasController@agregarM');
-Route::post('/buscarmarca','MarcasController@agregarMarca');
-Route::get('buscarmarca', 'MarcasController@buscarmarca');
-
-//Editar Marca
-Route::post('/marca_a_editar', 'MarcasController@marca_a_editar');
-Route::post('/actualizarmarca', 'MarcasController@actualizarmarca');
-
-//Eliminar Marca
+Route::get('/marcas', 'MarcasController@viewmarcas');
+Route::post('/agregarmarca','MarcasController@agregarmarca');
+Route::post('/marcaaeliminar','MarcasController@marcaaeliminar');
+Route::post('/eliminarmarca','MarcasController@eliminarmarca');
 Route::post('/marca_a_editar','MarcasController@marcaaeditar');
 Route::post('/actualizarmarca','MarcasController@actualizarmarca');
+
+
 
 
 //Tipos de dispositivo

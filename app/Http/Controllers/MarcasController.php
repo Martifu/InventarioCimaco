@@ -1,71 +1,50 @@
 <?php
 
 namespace App\Http\Controllers;
+
+
 use Response;
-use Barryvdh\DomPDF\Facade as PDF;
 use App;
-use Carbon\Carbon;
-use App\Equipos;
-use App\Tipos;
-use App\Departamentos;
 use App\Marcas;
-use App\Proveedores;
-use App\Tiendas;
 use Illuminate\Http\Request;
 
 class MarcasController extends Controller
 {
-     
-     public function agregarM()
-    {
-        $title = 'Marca';
-        return view('marca');
+    function viewmarcas(){
+        $marcas = Marcas::all();
+        return view('CRUD_acciones.marca',compact('marcas'));
     }
 
-public function agregarMarca(Request $request){
-
-        
-        $marcas = new Marcas(); 
-        $marcas->nombre=$request->input('marca');
-        $marcas->save();
-               
-
-          \Session::flash('marcas',$marcas);
-            return \Redirect::back();
-}
-
-  public function buscarmarca()
-    {
-      $marcas = Marcas::all();
-      
-        return view('marca', compact('marcas'));
+    function agregarmarca(Request $request){
+        $nombre = $request->nombre;
+        $marca = new Marcas();
+        $marca->nombre = $nombre;
+        $marca->save();
+        \Session::flash('tipo',$marca);
+        return \Redirect::back();
     }
 
+    function marcaaeliminar(Request $request){
+        $marca = Marcas::where('id',$request->id)->get();
+        return $marca;
+    }
 
-	  function marcaaeditar(Request $request){
+    function eliminarmarca(Request $request){
+        $marca_eli = Marcas::findOrFail($request->id);
+        $marca_eli->delete($request->id);
+        \Session::flash('eliminado',$marca_eli);
+        return \Redirect::back();
+    }
+
+    function marcaaeditar(Request $request){
         $marca = Marcas::where('id',$request->id)->get();
         return $marca;
     }
 
     function actualizarmarca(Request $request){
-        $marca = Marcas::where('id',$request->id)->update(['nombre'=>$request->marca]);
-        \Session::flash('marca',$marca);
+        $marca = Marcas::where('id',$request->id)->update(['nombre'=>$request->nombre]);
+        \Session::flash('editado',$marca);
         return \Redirect::back();
 
     }
-
-
-       public function eliminarmarca(Request $request)
-    {
-        $marca = Marcas::all()->get();
-        return $marca;
-    }
-
-  public function marca_a_eliminar(Request $request){
-        $marca = Marcas::findOrFail($request->id);
-        $marca->delete($request->id);
-       \Session::flash('marca',$marca);
-       return \Redirect::back();
-    }
-
 }
