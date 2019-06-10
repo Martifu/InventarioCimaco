@@ -39,11 +39,11 @@ Route::post('/aeliminar', 'EquiposController@aeliminar');
 //Editar
 Route::post('/equipo_a_editar', 'EquiposController@equipo_a_editar');
 Route::post('/actualizarequipo', 'EquiposController@actualizarequipo');
-
+//Info
+Route::post('/info_equipo','EquiposController@info_equipo');
 //PDFs Reportes
 Route::post('/reporte_activofijo','EquiposController@activofijo');
 
-Route::get('/todo','EquiposController@todo');
 
 
 //Agregar Marca
@@ -67,3 +67,27 @@ Route::post('/tipoaeliminar','TipoDispositivoController@tipoaeliminar');
 Route::post('/eliminartipo','TipoDispositivoController@eliminartipo');
 Route::post('/tipo_a_editar','TipoDispositivoController@tipoaeditar');
 Route::post('/actualizartipo','TipoDispositivoController@actualizartipo');
+
+//Departamentos
+Route::get('/departamentos', 'DepartamentoController@viewdepartamentos');
+Route::post('/agregardepartamento','DepartamentoController@agregardepartamento');
+Route::post('/departamentoaeliminar','DepartamentoController@departamentoaeliminar');
+Route::post('/eliminardepartamento','DepartamentoController@eliminardepartamento');
+Route::post('/departamento_a_editar','DepartamentoController@departamentoaeditar');
+Route::post('/actualizardepartamento','DepartamentoController@actualizardepartamento');
+
+//Proveedores
+Route::get('/proveedores', 'ProveedoresController@viewproveedores');
+Route::post('/agregarproveedor','ProveedoresController@agregarproveedor');
+Route::post('/proveedoraeliminar','ProveedoresController@proveedoraeliminar');
+Route::post('/eliminarproveedor','ProveedoresController@eliminarproveedor');
+Route::post('/proveedor_a_editar','ProveedoresController@proveedoraeditar');
+Route::post('/actualizarproveedor','ProveedoresController@actualizarproveedor');
+
+//Tiendas
+Route::get('/tiendas', 'TiendasController@viewtiendas');
+Route::post('/agregartienda','TiendasController@agregartienda');
+Route::post('/tiendaaeliminar','TiendasController@tiendaaeliminar');
+Route::post('/eliminartienda','TiendasController@eliminartienda');
+Route::post('/tienda_a_editar','TiendasController@tiendaaeditar');
+Route::post('/actualizartienda','TiendasController@actualizartienda');
