@@ -14,6 +14,7 @@ use App\Proveedores;
 use App\Tiendas;
 use App\User;
 use Session;
+use Auth;
 use Illuminate\Http\Request;
 
 class EquiposController extends Controller
@@ -31,7 +32,14 @@ class EquiposController extends Controller
 
     public function buscar_view()
     {
-
+        if (auth()->user()->id_role == 1){
+           $administrador =  auth()->user()->name;
+            Session::put('administrador',$administrador);
+        }
+        else if (auth()->user()->id_role == 2){
+            $usuario =  auth()->user()->name;
+            Session::put('usuario',$usuario);
+        }
         $titulo = "Activo fijo";
         $equipos = Equipos::with('departamento','marca','tipo','proveedor','tienda')->get();
         $tipos = Tipos::all();
@@ -173,8 +181,8 @@ class EquiposController extends Controller
 
 
     function usuarios(){
-        $usuarios = User::with('role')->get();
-
+        //$usuarios = User::with('role')->get();
+        $usuarios = auth()->user()->id_role;
         return $usuarios;
 
     }

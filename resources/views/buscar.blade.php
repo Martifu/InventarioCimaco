@@ -24,12 +24,7 @@
                             </div>
                         @endif
                     </div>
-                            @if (Session::has('equipos'))
-                                <script>
-                                    var hulla = new hullabaloo();
-                                    hulla.send("Equipo agregado", "success");
-                                </script>
-                            @endif
+
     <div class="header">
         <div class="row">
             <div class="col">
@@ -41,9 +36,11 @@
             <div class="col">
                 <button class="btn btn-outline-primary " data-toggle="modal" data-target="#exampleModalReporte">Generar reporte</button>
             </div>
-            <div class="col">
-                <button style="font-weight: bold; color: white; background-color: #45bc5d;" class="btn btn-outline-"data-toggle="modal" data-target="#modalForm">Agregar Equipo <i class="fas fa-plus-circle" style="color: white;"></i></button>
-            </div>
+            @if (Session::has('administrador'))
+                <div class="col">
+                    <button style="font-weight: bold; color: white; background-color: #45bc5d;" class="btn btn-outline-"data-toggle="modal" data-target="#modalForm">Agregar Equipo <i class="fas fa-plus-circle" style="color: white;"></i></button>
+                </div>
+            @endif
         </div>
     </div>
     <table id="example" class="table table-striped table-bordered" style="width:100%">
@@ -69,8 +66,10 @@
             <td>{{$equipo->responsable}}</td>
             <td>{{$equipo->ip}}</td>
             <td>
-                <button id="editar" style="background-color: #16c7ff; border: 0px;" class="btn btn-primary btn-editar" href="#exampleModalCenter"><i class="far fa-edit"></i></button>
-                <button id="eliminar" style=" background-color: red; border: 0px;" class="btn btn-warning btn-eliminar"  href="#exampleModalEliminar"><i class="far fa-trash-alt" style="color: white;"></i></button>
+                @if (Session::has('administrador'))
+                    <button id="editar" style="background-color: #16c7ff; border: 0px;" class="btn btn-primary btn-editar" href="#exampleModalCenter"><i class="far fa-edit"></i></button>
+                    <button id="eliminar" style=" background-color: red; border: 0px;" class="btn btn-warning btn-eliminar"  href="#exampleModalEliminar"><i class="far fa-trash-alt" style="color: white;"></i></button>
+                @endif
                 <button type="button" class="btn btn-primary btn-informacion" ><i class="fas fa-eye"></i></button>
             </td>
         </tr>

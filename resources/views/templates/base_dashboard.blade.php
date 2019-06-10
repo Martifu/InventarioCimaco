@@ -529,8 +529,13 @@
                 </div>
                 <div class="user-info">
          <span style="color: white"  class="user-name">  {{ Auth::user()->name }} 
-          </span> 
-                    <span class="user-role">Administrator</span>
+          </span>
+                    @if (Session::has('administrador'))
+                        <span class="user-role">Administrator</span>
+                    @endif
+                    @if (Session::has('usuario'))
+                        <span class="user-role">Empleado</span>
+                    @endif
                     <span class="user-status">
             <i class="fa fa-circle"></i>
             <span>Online</span>
@@ -548,44 +553,39 @@
                             <span>Buscar</span>
                         </a>
                     </li>
+                    @if (Session::has('administrador'))
+                        <li class="header-menu">
+                            <span>Control</span>
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="fa fa-book"></i>
+                                <span>Acciones</span>
 
-                    <li class="header-menu">
-                        <span>Control</span>
-                    </li>
-                    <li class="sidebar-dropdown">
-                        <a href="#">
-                            <i class="fa fa-book"></i>
-                            <span>Acciones</span>
-                            
-                        </a>
-                        <div class="sidebar-submenu">
-                            <ul>
-                                <li>
-                                    <a href="/marcas">Marcas
-                                       
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/tipos">Tipos de dispositivo</a>
-                                </li>
-                                <li>
-                                    <a href="/departamentos">Departamentos</a>
-                                </li>
-                                 <li>
-                                    <a href="/proveedores">Proveedores</a>
-                                </li>
-                                 <li>
-                                    <a href="/tiendas">Tiendas</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-folder"></i>
-                            <span>Examples</span>
-                        </a>
-                    </li>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a href="/marcas">Marcas
+
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/tipos">Tipos de dispositivo</a>
+                                    </li>
+                                    <li>
+                                        <a href="/departamentos">Departamentos</a>
+                                    </li>
+                                    <li>
+                                        <a href="/proveedores">Proveedores</a>
+                                    </li>
+                                    <li>
+                                        <a href="/tiendas">Tiendas</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    @endif
                 </ul>
             </div>
             <!-- sidebar-menu  -->
