@@ -87,3 +87,6 @@ Route::post('/tiendaaeliminar','TiendasController@tiendaaeliminar');
 Route::post('/eliminartienda','TiendasController@eliminartienda');
 Route::post('/tienda_a_editar','TiendasController@tiendaaeditar');
 Route::post('/actualizartienda','TiendasController@actualizartienda');
+
+
+Route::get('/usuarios','EquiposController@usuarios');

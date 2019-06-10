@@ -12,6 +12,7 @@ use App\Departamentos;
 use App\Marcas;
 use App\Proveedores;
 use App\Tiendas;
+use App\User;
 use Illuminate\Http\Request;
 
 class EquiposController extends Controller
@@ -207,6 +208,13 @@ public function agregarMarca(Request $request){
     {
         $marca = Marcas::all();
         return $marca;
+    }
+
+    function usuarios(){
+        $usuarios = User::with('role')->get();
+
+        return $usuarios;
+
     }
 
 
