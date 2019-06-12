@@ -585,7 +585,7 @@
                             </div>
                         </li>
                         <li>
-                            <a href="/usuarios">
+                            <a href="/registrar">
                                 <i class="fas fa-users"></i>
                                 <span>Usuarios</span>
                             </a>
