@@ -68,7 +68,7 @@
     <div class="header">
         <div class="row">
             <div class="col">
-                <h2>Proveedores</h2>
+                <h2 class="font-weight-bold">Proveedores</h2>
             </div>
         </div>
         <div class="row mb-1">

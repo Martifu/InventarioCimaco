@@ -2,6 +2,11 @@
 
 @section('cssextra')
     <style type="text/css">
+        body {
+            font-size: 1.0rem;
+            background-color: #fcfaff;
+            font-family: proxima-nova;
+        }
         .btn-inicio{
             border: 0px;
             background: linear-gradient(178.84deg, #17879D -61.99%, #1D82B1 -16.53%, #095B8D 41.42%, #001650 109.17%);
@@ -21,6 +26,10 @@
             box-shadow: 0px 2px 10px rgba(136, 136, 136, 0.33);
             background-color: #ffffff;
             border-radius: 15px;
+        }
+        @font-face {
+            font-family: 'proxima-nova';
+            src: url('/public/fonts/ProximaNova-Regular.otf');
         }
     </style>
 @stop
@@ -78,13 +87,9 @@
 
                         <div class="form-group">
                             <div class="col-md-5"  style="margin: auto;">
-                                <button type="submit" class="btn btn-primary btn-inicio">
+                                <button type="submit" class="btn btn-primary btn-inicio font-weight-bold">
                                     {{ __('Iniciar sesión') }}
                                 </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('¿Olvidaste tu contraseña?') }}
-                                </a>
                             </div>
                         </div>
                     </form>

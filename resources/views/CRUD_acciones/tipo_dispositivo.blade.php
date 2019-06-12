@@ -68,7 +68,7 @@
     <div class="header">
         <div class="row">
             <div class="col">
-                <h2>Tipos de dispositivos</h2>
+                <h2 class="font-weight-bold">Tipos de dispositivos</h2>
             </div>
         </div>
         <div class="row mb-1">

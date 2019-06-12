@@ -70,6 +70,11 @@
     body {
         font-size: 1.0rem;
         background-color: #fcfaff;
+        font-family: proxima-nova;
+    }
+    @font-face {
+        font-family: 'proxima-nova';
+        src: url('/public/fonts/ProximaNova-Regular.otf');
     }
     .page-wrapper .sidebar-wrapper,
     .sidebar-wrapper .sidebar-brand > a,
@@ -528,7 +533,7 @@
                     <img src="{{asset('img/perfil2.png')}}" style="width: 100%; height: 7%" alt="">
                 </div>
                 <div class="user-info">
-         <span style="color: white"  class="user-name">  {{ Auth::user()->name }} 
+         <span style="color: white"  class="user-name font-weight-bold">  {{ Auth::user()->name }}
           </span>
                     @if (Session::has('administrador'))
                         <span class="user-role">Administrator</span>
@@ -538,7 +543,7 @@
                     @endif
                     <span class="user-status">
             <i class="fa fa-circle"></i>
-            <span>Online</span>
+            <span class="font-weight-bold">Online</span>
           </span>
                 </div>
             </div>
