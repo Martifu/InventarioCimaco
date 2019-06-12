@@ -1,7 +1,48 @@
 @extends('templates.base_dashboard')
 
 @section('cssextra')
+    <style>
+        .btn-add{
+            border: 0px;
+            background: linear-gradient(178.84deg, #17879D -61.99%, #1D82B1 -16.53%, #095B8D 41.42%, #001650 109.17%);
+            box-shadow: 0px 2px 10px rgba(0, 99, 136, 0.53);
+            border-radius: 19.5px;
+            width: 100%;
+            height: 39px;
+            margin-top: 5%;
+            transition: .5s;
+        }
+        .btn-add:hover{
+            transform: scale(1.05);
+        }
 
+        .btn-editar{
+            background: linear-gradient(178.84deg, #17879D -61.99%, #1D82B1 -16.53%, #095B8D 41.42%, #001650 109.17%);
+            box-shadow: 0px 2px 10px rgba(0, 84, 136, 0.53);
+        }
+        .btn-editar:hover{
+            transform: scale(1.05);
+        }
+
+        .btn-eliminar{
+            background: linear-gradient(0.67deg, #760D0D -50.08%, #860D0D -24.69%, #961313 17.51%, #D01313 71.02%, #D30F0F 97.53%, #D61D1D 175%, #FF0000 208.61%);
+            box-shadow: 0px 10px 10px rgba(255, 3, 18, 0.25);
+        }
+        .btn-eliminar:hover{
+            transform: scale(1.05);
+        }
+
+        .btn-generico{
+            border: 0px;
+            background: linear-gradient(178.84deg, #17879D -61.99%, #1D82B1 -16.53%, #095B8D 41.42%, #001650 109.17%);
+            box-shadow: 0px 2px 10px rgba(0, 28, 136, 0.53);
+        }
+        .btn-generico-cancelar{
+            border: 0px;
+            background: linear-gradient(358.64deg, #343333 -28.63%, #555555 -5.54%, #7C7979 32.82%, #989595 81.47%, #B9B9B9 105.57%, #B7B7B7 176.01%, #C2C2C2 206.57%);
+            box-shadow: 0px 2px 10px rgba(110, 106, 110, 0.75);
+        }
+    </style>
 @stop
 
 @section('content')
@@ -33,7 +74,7 @@
         <div class="row mb-1">
             <div class="col offset-5"></div>
             <div class="col">
-                <button style="font-weight: bold; color: white; background-color: #45bc5d;" class="btn btn-outline-"data-toggle="modal" data-target="#modalForm">Agregar Tienda <i class="fas fa-plus-circle" style="color: white;"></i></button>
+                <button style="font-weight: bold; color: white; background-color: #45bc5d;" class="btn btn-outline- btn-add"data-toggle="modal" data-target="#modalForm">Agregar Tienda <i class="fas fa-plus-circle" style="color: white;"></i></button>
             </div>
         </div>
     </div>
@@ -83,8 +124,8 @@
                             </div>
                         </div>
                     </div>
-                    <button  type="Submit" id="agregar" class="btn btn-primary btn-agregar">Guardar</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button  type="Submit" id="agregar" class="btn btn-primary btn-agregar btn-generico">Guardar</button>
+                    <button type="button" class="btn btn-secondary btn-generico-cancelar" data-dismiss="modal">Cerrar</button>
                 </div>
 
                 <!-- Modal Footer -->
@@ -112,8 +153,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button id="eliminado" type="button" class="btn btn-primary btn-eliminado">
+                    <button type="button" class="btn btn-secondary btn-generico-cancelar" data-dismiss="modal">Cancelar</button>
+                    <button id="eliminado" type="button" class="btn btn-primary btn-eliminado btn-generico">
                         Confirmar</button>
                 </div>
             </div>
@@ -144,8 +185,8 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button id="guardar" type="button" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-secondary btn-generico-cancelar" data-dismiss="modal">Cancelar</button>
+                    <button id="guardar" type="button" class="btn btn-primary btn-generico">Guardar</button>
                 </div>
             </div>
         </div>
