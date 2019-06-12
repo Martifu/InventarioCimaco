@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Response;
 use Barryvdh\DomPDF\Facade as PDF;
 use App;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Equipos;
 use App\Tipos;
@@ -13,8 +14,10 @@ use App\Marcas;
 use App\Proveedores;
 use App\Tiendas;
 use App\User;
+use Illuminate\Support\Str;
 use Session;
 use Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class EquiposController extends Controller
@@ -182,10 +185,28 @@ class EquiposController extends Controller
 
     function usuarios(){
         //$usuarios = User::with('role')->get();
-        $usuarios = auth()->user()->id_role;
-        return $usuarios;
+       $usuario = DB::table('roles')->get();
+        return view('registrar', compact('usuario'));
 
     }
+
+
+    function tipousuario(request $request)
+    {
+     $token = Str::random(60);
+    $usuario = new User();
+    $usuario->name = $request->input('name');
+    $usuario->password = Hash::make($request['password']);
+    $usuario->email = $request->input('email');
+     $usuario->id_role = $request->get('tipo'); 
+     $usuario->remember_token = $token;
+    $usuario->save();
+
+    \Session::flash('usuario',$usuario);
+      return \Redirect::back();
+    
+    }
+    
 
 
 }
