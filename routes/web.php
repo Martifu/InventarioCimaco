@@ -93,6 +93,12 @@ Route::post('/actualizartienda','TiendasController@actualizartienda');
 
 
 
-//Registrar usuario
+//Usuarios
 Route::get('/registrar', 'EquiposController@usuarios');
 Route::post('/registrar','EquiposController@tipousuario');
+
+Route::post('/usuarioaeliminar','EquiposController@usuarioaeliminar');
+Route::post('/eliminarusuario','EquiposController@eliminarusuario');
+
+Route::post('/usuarioaeditar','EquiposController@usuarioaeditar');
+Route::post('/editarusuario','EquiposController@editarusuario');

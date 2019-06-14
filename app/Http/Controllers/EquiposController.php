@@ -172,6 +172,7 @@ class EquiposController extends Controller
 
 
 }
+
  public function equipo_a_agregar(Request $request)
     {
         $equipo = Equipos::where('id','=',$request->id)->get();
@@ -184,27 +185,54 @@ class EquiposController extends Controller
 
 
     function usuarios(){
-        //$usuarios = User::with('role')->get();
-       $usuario = DB::table('roles')->get();
-        return view('registrar', compact('usuario'));
+       $roles = DB::table('roles')->get();
+       $usuarios = User::with('role')->get();
+        return view('registrar', compact('roles', 'usuarios' ));
 
     }
 
 
     function tipousuario(request $request)
     {
-     $token = Str::random(60);
-    $usuario = new User();
-    $usuario->name = $request->input('name');
-    $usuario->password = Hash::make($request['password']);
-    $usuario->email = $request->input('email');
-     $usuario->id_role = $request->get('tipo'); 
-     $usuario->remember_token = $token;
-    $usuario->save();
+         $token = Str::random(60);
+         $usuario = new User();
+         $usuario->name = $request->input('name');
+         $usuario->password = Hash::make($request['contra']);
+         $usuario->email = $request->input('email');
+         $usuario->id_role = $request->get('tipo');
+         $usuario->remember_token = $token;
+         $usuario->save();
 
-    \Session::flash('usuario',$usuario);
-      return \Redirect::back();
+        \Session::flash('usuario',$usuario);
+         return \Redirect::back();
     
+    }
+
+    function usuarioaeliminar(Request $request){
+        $usuario = User::with('role')->where('id','=',$request->id)->get();
+        return $usuario;
+    }
+
+    function eliminarusuario(Request $request){
+        $usuario = User::findOrFail($request->id);
+        $usuario->delete($request->id);
+        \Session::flash('eliminado',$usuario);
+        return \Redirect::back();
+    }
+
+    function usuarioaeditar(Request $request){
+        $usuario = User::with('role')->where('id','=',$request->id)->get();
+        return $usuario;
+    }
+
+    function editarusuario(Request $request){
+        $password = Hash::make($request['contra']);
+        $usuario = User::where('id', $request->id)->update(['name' => $request->nombre,
+            'email' => $request->email,
+            'id_role' => $request->tipo,
+            'password' => $password]);
+
+        return $usuario;
     }
     
 
