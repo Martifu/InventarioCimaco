@@ -69,7 +69,7 @@
     }
     body {
         font-size: 1.0rem;
-        background-color: #fcfaff;
+        background-color: #f1eff4;
         font-family: proxima-nova;
     }
     @font-face {
@@ -565,7 +565,7 @@
                         <li class="sidebar-dropdown">
                             <a href="#">
                                 <i class="fa fa-book"></i>
-                                <span>Acciones</span>
+                                <span>Modulos</span>
 
                             </a>
                             <div class="sidebar-submenu">
