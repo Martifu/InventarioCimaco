@@ -186,6 +186,14 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group" style="color: #000000">
+                                <label for="res">Nombre del Equipo:</label>
+                                <input type="text" class="form-control" id="" name="nombre" placeholder="Ingrese nombre del equipo" value="{{old('nombre')}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group" style="color: #000000">
                                 <label for="num">Numero de serie:</label>
                                 <input type="text" class="form-control" id="" name="serie" placeholder="Ingrese número de serie" value="{{old('num')}}">
                             </div>
@@ -605,6 +613,7 @@
             //Agregar equipo
             $('.btn-agregar').on("click",function () {
                var token = $('input[name=_token]').val();
+               var nombre = $('input[name=nombre]').val();
                var serie = $('input[name=serie]').val();
                var tipo = $('select[name=tipo]').val();
                var departamento = $('select[name=departamento]').val();
@@ -627,6 +636,7 @@
                     data: {
                         _token: token,
                         serie: serie,
+                        nombre: nombre,
                         tipo:tipo,
                         departamento:departamento,
                         marca:marca,

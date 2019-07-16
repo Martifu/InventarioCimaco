@@ -146,6 +146,7 @@ class EquiposController extends Controller
         if ($equipo_existente->isEmpty()){
             $equipos = new Equipos();
             $equipos->num_serie=$request->input('serie');
+            $equipos->nombre=$request->input('nombre');
             $equipos->responsable=$request->input('responsable');
             $equipos->id_tipo = $request->get('tipo');
             $equipos->id_marca = $request->get('marca');
