@@ -114,7 +114,6 @@
             <th>Tipo Disp.</th>
             <th>Marca</th>
             <th>Departamento</th>
-            <th>Responsable</th>
             <th>Acciones</th>
         </tr>
         </thead>
@@ -127,7 +126,6 @@
             <td>{{$equipo->tipo['nombre']}}</td>
             <td>{{$equipo->marca['nombre']}}</td>
             <td>{{$equipo->departamento['nombre']}}</td>
-            <td>{{$equipo->responsable}}</td>
             <td>
                 @if (Session::has('administrador'))
                     <button id="editar" style="background-color: #16c7ff; border: 0px;" class="btn btn-primary btn-editar" href="#exampleModalCenter"><i class="far fa-edit"></i></button>
