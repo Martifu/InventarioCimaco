@@ -344,6 +344,14 @@
             <div class="modal-body">
                 <p class="statusMsg"></p>
                             {{csrf_field()}}
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group" style="color: #000000">
+                            <label for="res">Nombre del Equipo:</label>
+                            <input type="text" class="form-control nombrequipo" id="" name="nombre" placeholder="Ingrese nombre del equipo" value="{{old('nombre')}}">
+                        </div>
+                    </div>
+                </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group" style="color: #000000">
@@ -654,7 +662,6 @@
                         console.log(jqXHR);
                     }
                 });
-               console.log(serie);
             });
             //Eliminar equipo
             $('.btn-eliminar').on("click",function () {
@@ -700,6 +707,7 @@
             $('.btn-editar').on("click", function () {
                 var token = $('input[name=_token]').val();
                 var id = $(this).parent().parent().find('.id').val();
+                var nombre = $('.nombrequipo');
                 var serie = $('.noserie');
                 var tipo = $('#tipo');
                 var departamento = $('#departamento');
@@ -734,6 +742,7 @@
                         console.log(response);
                         $('#exampleModalCenter').modal('show');
                         serie.val(response[0].num_serie);
+                        nombre.val(response[0].nombre);
                         $('#selectTipo').val(response[0].tipo['id']);
                         $('#selectdepartamento').val(response[0].departamento['id']);
                         $('#selectproveedor').val(response[0].proveedor['id']);
@@ -751,19 +760,22 @@
                 $("#guardar").click(function () {
                     var token = $("input[name='_token']").val();
                     var serie = $('.noserie').val();
-                    var tipo = $('select[name=tipo]').val();
-                    var departamento = $('select[name=departamento]').val();
-                    var marca = $('select[name=marca]').val();
-                    var proveedor = $('select[name=proveedor]').val();
-                    var tienda = $('select[name=tienda]').val();
-                    var responsable = $('.responsable').val();
+                    var nombre = $('.nombrequipo').val();
+
+                    var tipo = $('select[id=selectTipo]').val();
+                    var departamento = $('select[id=selectdepartamento]').val();
+                    var marca = $('select[id=selectmarca]').val();
+                    var proveedor = $('select[id=selectproveedor]').val();
+                    var tienda = $('select[id=selecttienda]').val();
+
                     var ip = $('#ip').val();
+                    var responsable = $('.responsable').val();
                     var modelo = $('.modelo').val();
                     var descripcion = $('.descripcion').val();
                     var precio = $('.precio').val();
                     var load = $('#guardar');
                     load.html('Actualizando '+' <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
-                  console.log(tipo,departamento,marca,proveedor,tienda, ip);
+                  console.log(serie, nombre, tipo,departamento,marca,proveedor,tienda, ip , responsable, modelo, descripcion, precio);
                     $.ajax({
                         url: "/actualizarequipo",
                         type: 'POST',
