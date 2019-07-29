@@ -125,7 +125,7 @@
             <td>{{$equipo->num_serie}}</td>
             <td>{{$equipo->nombre}}</td>
             <td>{{$equipo->tipo['nombre']}}</td>
-            <td>{{$equipo->creted_at}}</td>
+            <td>{{$equipo->created_at}}</td>
             <td>{{$equipo->updated_at}}</td>
             <td>{{$equipo->departamento['nombre']}}</td>
             <td>
