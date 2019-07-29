@@ -74,7 +74,7 @@
         <div class="row mb-1">
             <div class="col offset-5"></div>
             <div class="col">
-                <button style="font-weight: bold; color: white; background-color: #45bc5d;" class="btn btn-outline- btn-add"data-toggle="modal" data-target="#modalForm">Agregar Equipo <i class="fas fa-plus-circle" style="color: white;"></i></button>
+                <button style="font-weight: bold; color: white; background-color: #45bc5d;" class="btn btn-outline- btn-add"data-toggle="modal" data-target="#modalForm">Agregar tipo<i class="fas fa-plus-circle" style="color: white;"></i></button>
             </div>
         </div>
     </div>
