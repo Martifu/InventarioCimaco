@@ -112,7 +112,8 @@
             <th>N° Serie</th>
             <th>Nombre</th>
             <th>Tipo Disp.</th>
-            <th>Fecha de alta</th>
+            <th>Alta</th>
+            <th>Modificación</th>
             <th>Departamento</th>
             <th>Acciones</th>
         </tr>
@@ -124,7 +125,8 @@
             <td>{{$equipo->num_serie}}</td>
             <td>{{$equipo->nombre}}</td>
             <td>{{$equipo->tipo['nombre']}}</td>
-            <td>{{$equipo}}</td>
+            <td>{{$equipo->creted_at}}</td>
+            <td>{{$equipo->updated_at}}</td>
             <td>{{$equipo->departamento['nombre']}}</td>
             <td>
                 @if (Session::has('administrador'))
